@@ -49,7 +49,7 @@ class Chef
           Chef::Log.info("Configuring #{name} to automatically start on login")
           destination_plist = "#{ENV['HOME']}/Library/LaunchAgents/#{plist_for(name)}"
           unless ::File.exist?(destination_plist)
-            system("cp #{plist_fullpath_for(name)} #{destination_plist}/")
+            system("cp #{plist_fullpath_for(name)} #{destination_plist}")
             system("launchctl load -w #{destination_plist}")
           end
         end
@@ -60,11 +60,11 @@ class Chef
           when "mongodb"
           when "postgresql"
             unless ::File.directory?("/usr/local/var/postgres")
-              run_command("initdb /usr/local/var/postgres")
+              system("initdb /usr/local/var/postgres")
             end
           when "mysql"
             unless ::File.directory?("/usr/local/var/mysql")
-              run_command("/usr/local/Cellar/mysql/#{latest_version_for(name)}/bin/mysql_install_db")
+              system("/usr/local/Cellar/mysql/#{latest_version_for(name)}/bin/mysql_install_db")
             end
           else
             raise "Unknown Homebrew DB: #{name}"
