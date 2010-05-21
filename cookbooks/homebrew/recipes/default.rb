@@ -22,10 +22,6 @@ root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 
-MONGO_DB_VERSION      = "1.4.2-x86_64"
-MYSQL_DB_VERSION      = "5.1.46"
-POSTGRESQL_DB_VERSION = "8.4.4"
-
 execute "setup /usr/local" do
   command "sudo mkdir -p /usr/local"
   not_if "test -d /usr/local"
@@ -54,81 +50,9 @@ execute "update to the latest homebrew from github" do
   command "brew update"
 end
 
-#def hombrew_db(name, options = { })
-  #version    = %x{#{HOMEBREW} info #{name}| head -n1 | awk '{print $2}'}.chomp
-  #plist_file = "/usr/local/Cellar/#{name}/#{version}/#{options[:plist]}"
-
-  #if options[:init_command] && options[:init_unless]
-    #execute "initialize #{name} database" do
-      #command options[:init]
-      #not_if  options[:init]
-    #end
-  #end
-  #execute "copy user launchctl scripts for #{name}" do
-    #command "cp #{plist_file} ~/Library/LaunchAgents"
-  #end
-  #execute "add launchctl scripts" do
-    #command "launchctl load -w ~/Library/LaunchAgents/#{File.basename(plist_file)}"
-  #end
-#end
-
-#homebrew_db("mysql", {:plist => 'com.mysql.mysqld.plist', :init => "bin/mysql
-#homebrew_db("mongodb", {:plist => 'org.mongodb.mongod.plist'})
-#homebrew_db("postgresql", {:plist => 'org.postgresql.postgres.plist', :init => "initdb /usr/local/var/postgres", :unless => "test -d /usr/local/var/postgres"})
-
-#hombrew_db "mysql" do
-  #init_command "bin/mysql_install_db"
-  #init_unless  "test -d /usr/local/var/mysql"
-  #plist_file = "com.mysql.mysqld.plist"
-#end
-
-#hombrew_db "postgresql" do
-  #init_command "initdb /usr/local/var/postgres"
-  #init_unless  "test -d /usr/local/var/postgres"
-  #plist_file = "org.postgresql.postgres.plist"
-#end
-
-#hombrew_db "mongodb" do
-  #plist_file = "org.mongodb.mongod.plist"
-#end
-
-###
-homebrew "mongodb"
-mongodb_plist_file = "/usr/local/Cellar/mongodb/#{MONGO_DB_VERSION}/org.mongodb.mongod.plist"
-execute "copy user launchctl scripts" do
-  command "cp #{mongodb_plist_file} ~/Library/LaunchAgents"
-end
-execute "add launchctl scripts" do
-  command "launchctl load -w ~/Library/LaunchAgents/#{File.basename(mongodb_plist_file)}"
-end
-
-###
-homebrew "postgresql"
-postgresql_plist_file = "/usr/local/Cellar/postgresql/#{POSTGRESQL_DB_VERSION}/org.postgresql.postgres.plist"
-execute "initialize postgresql database" do
-  command "initdb /usr/local/var/postgres"
-  not_if  "test -d /usr/local/var/postgres"
-end
-execute "copy user launchctl scripts" do
-  command "cp #{postgresql_plist_file} ~/Library/LaunchAgents"
-end
-execute "add launchctl scripts" do
-  command "launchctl load -w ~/Library/LaunchAgents/#{File.basename(postgresql_plist_file)}"
-end
-
-###
-homebrew "mysql"
-mysql_plist_file = "/usr/local/Cellar/mysql/#{MYSQL_DB_VERSION}/com.mysql.mysqld.plist"
-execute "initialize mysql database" do
-  command "/usr/local/Cellar/mysql/#{MYSQL_DB_VERSION}/bin/mysql_install_db"
-  not_if "test -d /usr/local/var/mysql/"
-end
-execute "copy user launchctl scripts" do
-  command "cp #{mysql_plist_file} ~/Library/LaunchAgents"
-end
-execute "add launchctl scripts" do
-  command "launchctl load -w ~/Library/LaunchAgents/#{File.basename(mysql_plist_file)}"
-end
+homebrew_db "mongodb"
+homebrew_db "postgresql"
+homebrew_db "mysql"
 
 ### install a bunch of utils
 %w(node rlwrap kiwi ack sqlite hub wget fortune).each do |pkg|
