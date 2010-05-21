@@ -64,3 +64,6 @@ task :bundle_cookbook, :cookbook do |t, args|
   FileUtils.rm_rf temp_dir
 end
 
+task :solo do |t, args|
+  system("chef-solo -j config/run_list.json -c config/solo.rb")
+end

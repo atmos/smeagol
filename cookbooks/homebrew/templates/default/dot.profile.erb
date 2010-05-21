@@ -1,0 +1,6 @@
+PATH=/usr/local/bin:$PATH
+if [[ -s <%= @home %>/.rvm/scripts/rvm ]] ; then source <%= @home %>/.rvm/scripts/rvm ; fi
+echo ""; fortune; echo ""
+rvm use 1.8.7-p173
+set -o vi
+alias nerd="vim +NERDTree"
