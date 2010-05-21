@@ -120,7 +120,7 @@ end
 homebrew "mysql"
 mysql_plist_file = "/usr/local/Cellar/mysql/#{MYSQL_DB_VERSION}/com.mysql.mysqld.plist"
 execute "initialize mysql database" do
-  command "/usr/local/Cellar/mysql/#{mysql_version}/bin/mysql_install_db"
+  command "/usr/local/Cellar/mysql/#{MYSQL_DB_VERSION}/bin/mysql_install_db"
   not_if "test -d /usr/local/var/mysql/"
 end
 execute "copy user launchctl scripts" do
@@ -131,7 +131,7 @@ execute "add launchctl scripts" do
 end
 
 ### install a bunch of utils
-%w(node rlwrap kiwi ack sqlite hub wget).each do |pkg|
+%w(node rlwrap kiwi ack sqlite hub wget fortune).each do |pkg|
   homebrew pkg
 end
 
