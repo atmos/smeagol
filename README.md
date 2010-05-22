@@ -12,18 +12,20 @@ What it does
 ============
 
 * Sets you up with homebrew
-* Installs git from homebrew
+* Installs git from homebrew, sets up ~/.gitconfig
 * Installs postgresql, mongodb, and mysql
 * Installs rvm and sets up 1.8.7 to be the default
 * Installs both bundler08 and the bundler gems
 
+These are the recipes that [cider][cider]
 Running
 =======
 
-    % rake smeagol:install
+    % EDITOR="vim" EMAIL="me@mydomain.com" FULLNAME="Tyler Durden" rake smeagol:install
 
 You may be prompted for your sudo password at some point during installation.  Everything is getting installed as your user though.
 
 http://wiki.opscode.com/display/chef/Chef+Repository
 
 [smeagol]: http://en.wikipedia.org/wiki/Gollum
+[cider]: http://ciderapp.org

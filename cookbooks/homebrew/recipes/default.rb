@@ -7,13 +7,13 @@ root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 
-execute "setup /usr/local" do
-  command "sudo mkdir -p /usr/local"
-  not_if "test -d /usr/local"
-end
-
-execute "fix homebrew file ownerships" do
-  command "sudo chown -R #{ENV['USER']}:staff /usr/local"
+script "setup /usr/local" do
+  interpreter 'bash'
+  code <<-EOS
+    sudo mkdir -p /usr/local
+    sudo chown -R #{ENV['USER']}:staff /usr/local
+EOS
+  not_if  "test -d /usr/local"
 end
 
 execute "download homebrew installer" do
@@ -29,7 +29,7 @@ template "#{ENV['HOME']}/.profile" do
   source "dot.profile.erb"
   variables({
     :home        => ENV['HOME'],
-    :rvm_default => ENV['DEFAULT_RVM_VM'] || 'rbx'
+    :rvm_default => ENV['DEFAULT_RVM_VM'] || '1.8.7-p249'
   })
 end
 
@@ -43,6 +43,6 @@ homebrew_db "postgresql"
 homebrew_db "mysql"
 
 ### install a bunch of utils
-%w(ack sqlite hub wget fortune).each do |pkg|
+%w(ack sqlite wget fortune).each do |pkg|
   homebrew pkg
 end
