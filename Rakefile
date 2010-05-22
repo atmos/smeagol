@@ -12,7 +12,6 @@ begin
   require 'chef'
   require 'json'
 
-  task :default => :smeagol
   # Load constants from rake config file.
   require File.join(File.dirname(__FILE__), 'config', 'rake')
 

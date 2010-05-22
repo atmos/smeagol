@@ -1,10 +1,12 @@
 #
 # Chef Solo Config File
 #
+smeagol_root = "#{Dir.tmpdir}/smeagol"
 
 log_level          :info
 log_location       STDOUT
-file_cache_path    "/tmp/cookbooks"
+file_cache_path    "#{smeagol_root}/cookbooks"
+cache_options      ({ :path => "#{smeagol_root}/cache/checksums", :skip_expires => true })
 
 # Optionally store your JSON data file and a tarball of cookbooks remotely.
 #json_attribs "http://chef.example.com/dna.json"

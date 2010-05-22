@@ -1,1 +1,1 @@
-{ "recipes": [ "homebrew" ] }
+{ "recipes": [ "homebrew", "rvm", "oh-my-zsh" ] }
