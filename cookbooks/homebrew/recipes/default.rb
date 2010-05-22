@@ -23,9 +23,9 @@ execute "download homebrew installer" do
 end
 
 template "#{ENV['HOME']}/.profile" do
-  mode  0700
-  owner ENV['USER']
-  group 'staff'
+  mode   0700
+  owner  ENV['USER']
+  group  'staff'
   source "dot.profile.erb"
   variables({
     :home        => ENV['HOME'],

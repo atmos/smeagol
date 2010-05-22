@@ -60,11 +60,12 @@ begin
     end
     task :cleanup do |t, args|
       %w(mongod post mysql).each do |server_type|
-        system("launchctl unload -w ~/Library/LaunchAgents/org.#{server_type}*")
+        system("launchctl unload -w ~/Library/LaunchAgents/*.#{server_type}*")
         system("ps auwwx | grep #{server_type} | awk '{print $2}' | xargs kill -9")
+        system("rm ~/Library/LaunchAgents/*.#{server_type}*")
       end
       sleep 2
-      system("rm -rf /usr/local")
+      system("sudo rm -rf /usr/local")
     end
   end
 rescue LoadError => e

@@ -60,7 +60,7 @@ class Chef
           when "mongodb"
           when "postgresql"
             unless ::File.directory?("/usr/local/var/postgres")
-              system("initdb /usr/local/var/postgres")
+              system("initdb /usr/local/var/postgres > /dev/null")
             end
           when "mysql"
             unless ::File.directory?("/usr/local/var/mysql")
