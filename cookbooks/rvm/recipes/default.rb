@@ -11,7 +11,11 @@ execute "install rvm for the user" do
   command "rvm-install"
 end
 
-script "install rvm for the user" do
+# this should really install rbx as the default
+script "installing rubinius and ruby 1.8.7 for the user" do
   interpreter "bash"
-  code "source ~/.profile; rvm install 1.8.7-p173"
+  code <<-EOS
+    source ~/.profile
+    rvm install rbx
+  EOS
 end

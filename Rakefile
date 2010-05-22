@@ -68,7 +68,8 @@ begin
     end
   end
 rescue LoadError => e
+  puts e.message
   puts "You don't seem to have chef, installing it for you"
-  system("sudo gem install chef --no-rdoc --no-ri")
+  system("gem install chef --no-rdoc --no-ri")
   puts "I had to install chef for you, please rerun 'rake smeagol'"
 end

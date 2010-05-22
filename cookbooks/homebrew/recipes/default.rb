@@ -27,7 +27,7 @@ template "#{ENV['HOME']}/.profile" do
   owner ENV['USER']
   group 'staff'
   source "dot.profile.erb"
-  variables({ :home => ENV['HOME'] })
+  variables({ :home => ENV['HOME'], :rvm_default = ENV['DEFAULT_RVM_VM'] || 'rbx' })
 end
 
 homebrew "git"
