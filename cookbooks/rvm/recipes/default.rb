@@ -19,3 +19,13 @@ script "installing rubinius and ruby 1.8.7 for the user" do
     rvm install rbx
   EOS
 end
+
+# this should really install rbx as the default
+script "installing the bundler" do
+  interpreter "bash"
+  code <<-EOS
+    source ~/.profile
+    gem install bundler --no-rdoc --no-ri
+    gem install bundler08 --no-rdoc --no-ri
+  EOS
+end
