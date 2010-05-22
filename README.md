@@ -20,7 +20,7 @@ What it does
 Running
 =======
 
-    % rake smeagol
+    % rake smeagol:install
 
 You may be prompted for your sudo password at some point during installation.  Everything is getting installed as your user though.
 

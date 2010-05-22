@@ -40,7 +40,6 @@ homebrew_db "postgresql"
 homebrew_db "mysql"
 
 ### install a bunch of utils
-%w(node rlwrap kiwi ack sqlite hub wget fortune).each do |pkg|
+%w(ack sqlite hub wget fortune).each do |pkg|
   homebrew pkg
 end
-

@@ -54,8 +54,18 @@ begin
     FileUtils.rm_rf temp_dir
   end
 
-  task :smeagol do |t, args|
-    system("chef-solo -j config/run_list.json -c config/solo.rb")
+  namespace :smeagol do
+    task :install do |t, args|
+      system("chef-solo -j config/run_list.json -c config/solo.rb")
+    end
+    task :cleanup do |t, args|
+      %w(mongod post mysql).each do |server_type|
+        system("launchctl unload -w ~/Library/LaunchAgents/org.#{server_type}*")
+        system("ps auwwx | grep #{server_type} | awk '{print $2}' | xargs kill -9")
+      end
+      sleep 2
+      system("rm -rf /usr/local")
+    end
   end
 rescue LoadError => e
   puts "You don't seem to have chef, installing it for you"

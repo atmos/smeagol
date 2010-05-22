@@ -64,7 +64,7 @@ class Chef
             end
           when "mysql"
             unless ::File.directory?("/usr/local/var/mysql")
-              system("/usr/local/Cellar/mysql/#{latest_version_for(name)}/bin/mysql_install_db")
+              system("/usr/local/Cellar/mysql/#{latest_version_for(name)}/bin/mysql_install_db > /dev/null")
             end
           else
             raise "Unknown Homebrew DB: #{name}"
