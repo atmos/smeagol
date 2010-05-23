@@ -5,7 +5,8 @@ class Chef
   class Provider
     class Package
       class Homebrew < ::Chef::Provider::Package
-        HOMEBREW = "/usr/local/bin/brew"
+        PREFIX   = "#{ENV['HOME']}/Developer"
+        HOMEBREW = "#{PREFIX}/bin/brew"
 
         def latest_version_for(name)
           %x{#{HOMEBREW} info #{name}| head -n1 | awk '{print $2}'}.chomp
@@ -42,7 +43,7 @@ class Chef
         end
 
         def plist_fullpath_for(name)
-          "/usr/local/Cellar/#{name}/#{latest_version_for(name)}/#{plist_for(name)}"
+          "#{PREFIX}/Cellar/#{name}/#{latest_version_for(name)}/#{plist_for(name)}"
         end
 
         def load_plist_for(name)
@@ -57,12 +58,12 @@ class Chef
           case name
           when "mongodb"
           when "postgresql"
-            unless ::File.directory?("/usr/local/var/postgres")
-              system("initdb /usr/local/var/postgres > /dev/null")
+            unless ::File.directory?("#{PREFIX}/usr/local/var/postgres")
+              system("#{PREFIX}/bin/initdb #{PREFIX}/var/postgres > /dev/null")
             end
           when "mysql"
-            unless ::File.directory?("/usr/local/var/mysql")
-              system("/usr/local/Cellar/mysql/#{latest_version_for(name)}/bin/mysql_install_db > /dev/null")
+            unless ::File.directory?("#{PREFIX}/var/mysql")
+              system("#{PREFIX}/Cellar/mysql/#{latest_version_for(name)}/bin/mysql_install_db > /dev/null")
             end
           else
             raise "Unknown Homebrew DB: #{name}"

@@ -7,19 +7,14 @@ root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 
-script "setup /usr/local" do
-  interpreter 'bash'
-  code <<-EOS
-    sudo mkdir -p /usr/local
-    sudo chown -R #{ENV['USER']}:staff /usr/local
-EOS
-  not_if  "test -d /usr/local"
+directory "#{ENV['HOME']}/Developer" do
+  action :create
 end
 
 execute "download homebrew installer" do
   command "/usr/bin/curl -sfL http://github.com/mxcl/homebrew/tarball/master | /usr/bin/tar xz -m --strip 1"
-  cwd '/usr/local'
-  not_if "test -e /usr/local/bin/brew"
+  cwd     "#{ENV['HOME']}/Developer"
+  not_if  "test -e ~/Developer/bin/brew"
 end
 
 template "#{ENV['HOME']}/.cider.profile" do
@@ -35,14 +30,20 @@ end
 
 %w(profile bash_profile zshrc).each do |config_file|
   execute "include cider environment into defaults for ~/.#{config_file}" do
-    command "echo 'source ~/.cider.profile' >> ~/.#{config_file}"
+    command "if [ -f ~/.#{config_file} ]; then echo 'source ~/.cider.profile' >> ~/.#{config_file}; fi"
     not_if  "grep -q 'cider.profile' ~/.#{config_file}"
   end
 end
 
 homebrew "git"
-execute "update to the latest homebrew from github" do
-  command "brew update"
+script "updating homebrew from github" do
+  interpreter "bash"
+  code <<-EOS
+    source ~/.cider.profile
+    PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
+    echo $PATH >> ~/.cider.log 2>&1
+    ~/Developer/bin/brew update >> ~/.cider.log 2>&1
+  EOS
 end
 
 homebrew_db "mongodb"
@@ -50,6 +51,6 @@ homebrew_db "postgresql"
 homebrew_db "mysql"
 
 ### install a bunch of utils
-%w(ack sqlite wget fortune).each do |pkg|
+%w(tig ack sqlite wget tig fortune).each do |pkg|
   homebrew pkg
 end
