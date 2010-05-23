@@ -1,8 +1,10 @@
 PATH=/usr/local/bin:$PATH; export PATH
 MANPATH=/usr/local/share/man:$MANPATH; export MANPATH
-if [[ -s <%= @home %>/.rvm/scripts/rvm ]] ; then source <%= @home %>/.rvm/scripts/rvm ; fi
+if [[ -s <%= @home %>/.rvm/scripts/rvm ]] ; then 
+  source <%= @home %>/.rvm/scripts/rvm
+  rvm use <%= @rvm_default %>
+fi
 echo ""; fortune; echo ""
-rvm use <%= @rvm_default %>
 
 set -o vi
 alias nerd="vim +NERDTree"
