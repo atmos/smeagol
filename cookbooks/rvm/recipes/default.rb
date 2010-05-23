@@ -3,11 +3,6 @@
 # Recipe:: default
 #
 
-execute "install rvm to system gems" do
-  command "gem install rvm --no-rdoc --no-ri"
-  not_if  "test -x /usr/bin/rvm-install"
-end
-
 execute "install rvm for the user" do
   command "rvm-install"
   not_if  "test -d ~/.rvm"
