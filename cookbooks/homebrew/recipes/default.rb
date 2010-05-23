@@ -22,6 +22,13 @@ execute "download homebrew installer" do
   not_if "test -e /usr/local/bin/brew"
 end
 
+template "#{ENV['HOME']}/.bashrc" do
+  mode   0700
+  owner  ENV['USER']
+  group  'staff'
+  source "dot.bashrc.erb"
+end
+
 template "#{ENV['HOME']}/.profile" do
   mode   0700
   owner  ENV['USER']
