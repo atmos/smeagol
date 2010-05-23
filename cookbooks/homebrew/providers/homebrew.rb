@@ -58,7 +58,7 @@ class Chef
           case name
           when "mongodb"
           when "postgresql"
-            unless ::File.directory?("#{PREFIX}/usr/local/var/postgres")
+            unless ::File.directory?("#{PREFIX}/var/postgres")
               system("#{PREFIX}/bin/initdb #{PREFIX}/var/postgres > /dev/null")
             end
           when "mysql"
