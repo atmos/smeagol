@@ -1,13 +1,16 @@
-PATH=/usr/local/bin:$PATH; export PATH
-MANPATH=/usr/local/share/man:$MANPATH; export MANPATH
-if [[ -s <%= @home %>/.rvm/scripts/rvm ]] ; then 
-  source <%= @home %>/.rvm/scripts/rvm
-  rvm use <%= @rvm_default %>
-fi
-echo ""; fortune; echo ""
+if [ "$CIDER_SOURCED" = "" ]; then
+  PATH=/usr/local/bin:$PATH; export PATH
+  MANPATH=/usr/local/share/man:$MANPATH; export MANPATH
+  if [[ -s <%= @home %>/.rvm/scripts/rvm ]] ; then 
+    source <%= @home %>/.rvm/scripts/rvm
+    rvm use <%= @rvm_default %>
+  fi
 
-set -o vi
-alias nerd="vim +NERDTree"
-alias g="git"
-alias bees="bundle exec spec"
-alias beer="bundle exec rake"
+  if [[ -f <%= @home %>/.cider.profile.custom ]]; then
+    source ~/.cider.profile.custom
+  fi
+
+  alias bees="bundle exec spec"
+  alias beer="bundle exec rake"
+  CIDER_SOURCED="true"; export CIDER_SOURCED
+fi
