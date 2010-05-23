@@ -48,10 +48,8 @@ class Chef
         def load_plist_for(name)
           Chef::Log.info("Configuring #{name} to automatically start on login")
           destination_plist = "#{ENV['HOME']}/Library/LaunchAgents/#{plist_for(name)}"
-          unless ::File.exist?(destination_plist)
-            system("cp #{plist_fullpath_for(name)} #{destination_plist}")
-            system("launchctl load -w #{destination_plist}")
-          end
+          system("cp -f #{plist_fullpath_for(name)} #{destination_plist} >/dev/null 2>&1")
+          system("launchctl load -w #{destination_plist} >/dev/null 2>&1")
         end
 
         def install_package(name, version)

@@ -22,14 +22,7 @@ execute "download homebrew installer" do
   not_if "test -e /usr/local/bin/brew"
 end
 
-template "#{ENV['HOME']}/.bashrc" do
-  mode   0700
-  owner  ENV['USER']
-  group  'staff'
-  source "dot.bashrc.erb"
-end
-
-template "#{ENV['HOME']}/.profile" do
+template "#{ENV['HOME']}/.cider.profile" do
   mode   0700
   owner  ENV['USER']
   group  'staff'
@@ -38,6 +31,13 @@ template "#{ENV['HOME']}/.profile" do
     :home        => ENV['HOME'],
     :rvm_default => ENV['DEFAULT_RVM_VM'] || '1.8.7-p249'
   })
+end
+
+%w(profile bash_profile zshrc).each do |config_file|
+  execute "include cider environment into defaults for ~/.#{config_file}" do
+    command "echo 'source ~/.cider.profile' >> ~/.#{config_file}"
+    not_if  "grep -q 'cider.profile' ~/.#{config_file}"
+  end
 end
 
 homebrew "git"
