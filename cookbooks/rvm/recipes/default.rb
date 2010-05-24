@@ -28,6 +28,10 @@ script "updating rvm to the latest stable version" do
   EOS
 end
 
+execute "cleanup rvm build artifacts" do
+  command "rm -rf ~/.rvm/src/rbx-1.0.0-20100514 ~/.rvm/src/rubinius-1.0.0 ~/.rvm/src/ruby-1.8.7-p249"
+end
+
 template "#{ENV['HOME']}/.gemrc" do
   source "dot.gemrc.erb"
 end
