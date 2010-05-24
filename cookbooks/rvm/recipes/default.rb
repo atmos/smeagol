@@ -36,14 +36,37 @@ template "#{ENV['HOME']}/.gemrc" do
   source "dot.gemrc.erb"
 end
 
-gem_package "bundler" do
-  version "0.9.25"
-  gem_binary "#{ENV['HOME']}/.rvm/rubies/ruby-1.8.7-p249/bin/gem"
+script "updating to the latest bundler 0.9.X version" do
+  interpreter "bash"
+  code <<-EOS
+    `gem list bundler | grep -q '0.9.25'`
+    if [[ $? -eq 0 ]]; then
+      source ~/.cider.profile
+      gem install bundler --no-rdoc --no-ri
+    fi
+  EOS
 end
 
-gem_package "bundler08" do
-  version "0.8.5"
-  gem_binary "#{ENV['HOME']}/.rvm/rubies/ruby-1.8.7-p249/bin/gem"
+script "updating to the latest bundler08 version" do
+  interpreter "bash"
+  code <<-EOS
+    `gem list bundler08 | grep -q '0.8.5'`
+    if [[ $? -eq 0 ]]; then
+      source ~/.cider.profile
+      gem install bundler08 --no-rdoc --no-ri
+    fi
+  EOS
+end
+
+script "updating to the latest cider version" do
+  interpreter "bash"
+  code <<-EOS
+    `gem list cider | grep -q '0.1.2'`
+    if [[ $? -eq 0 ]]; then
+      source ~/.cider.profile
+      gem install cider --no-rdoc --no-ri
+    fi
+  EOS
 end
 
 gem_package "cider" do
