@@ -46,4 +46,3 @@ gem_package "cider" do
   version "0.1.2"
   gem_binary "#{ENV['HOME']}/.rvm/rubies/ruby-1.8.7-p249/bin/gem"
 end
-

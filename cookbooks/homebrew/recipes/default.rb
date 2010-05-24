@@ -28,11 +28,16 @@ template "#{ENV['HOME']}/.cider.profile" do
   })
 end
 
-%w(profile bash_profile zshrc).each do |config_file|
+%w(bash_profile bashrc zshrc).each do |config_file|
   execute "include cider environment into defaults for ~/.#{config_file}" do
     command "if [ -f ~/.#{config_file} ]; then echo 'source ~/.cider.profile' >> ~/.#{config_file}; fi"
     not_if  "grep -q 'cider.profile' ~/.#{config_file}"
   end
+end
+
+execute "setup cider profile sourcing in ~/.profile" do
+  command "echo 'source ~/.cider.profile' >> ~/.profile"
+  not_if  "grep -q 'cider.profile' ~/.profile"
 end
 
 homebrew "git"
