@@ -52,6 +52,7 @@ script "updating homebrew from github" do
 end
 
 homebrew_db "mongodb"
+homebrew_db "memcached"
 homebrew_db "postgresql"
 homebrew_db "mysql"
 

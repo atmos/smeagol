@@ -39,6 +39,7 @@ class Chef
         def plist_for(name)
           { "mysql"      => "com.mysql.mysqld.plist",
             "mongodb"    => "org.mongodb.mongod.plist",
+            "memcached"  => "com.danga.memcached.plist",
             "postgresql" => "org.postgresql.postgres.plist" }[name]
         end
 
@@ -57,7 +58,7 @@ class Chef
         def install_package(name, version)
           super(name, version)
           case name
-          when "mongodb"
+          when "mongodb", "memcached"
           when "postgresql"
             unless ::File.directory?("#{PREFIX}/var/postgres")
               system("#{PREFIX}/bin/initdb #{PREFIX}/var/postgres > /dev/null")
