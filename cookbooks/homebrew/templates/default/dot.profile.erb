@@ -3,7 +3,6 @@ if [ "$CIDER_SOURCED" = "" ]; then
   MANPATH="<%= @home %>/Developer/share/man:$MANPATH"; export MANPATH
   if [[ -s <%= @home %>/.rvm/scripts/rvm ]] ; then 
     source <%= @home %>/.rvm/scripts/rvm
-    rvm use <%= @rvm_default %>
   fi
 
   if [[ -f <%= @home %>/.cider.profile.custom ]]; then
