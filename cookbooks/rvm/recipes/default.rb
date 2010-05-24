@@ -12,7 +12,7 @@ script "installing ruby" do
   interpreter "bash"
   code <<-EOS
     source ~/.cider.profile
-    `rvm rbx -S ruby --version | head -n1 | grep -q "not installed"`
+    `rvm rbx -S ruby --version | grep rbx | head -n1 | grep -q "not installed"`
     if [ $? -eq 0 ]; then
       rvm install rbx
       rvm use ruby-1.8.7-p249 --default
