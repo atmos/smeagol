@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ -d ~/Developer/Cellar/npm ]; then
+  cd ~/Developer/Cellar/npm
+  ./cli.js $@
+else
+  echo "npm doesn't seem to be installed"
+fi
