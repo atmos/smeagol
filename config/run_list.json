@@ -1,1 +1,1 @@
-{ "recipes": [ "homebrew", "git", "rvm", "node", "sinatra", "rails", "oh-my-zsh" ] }
+{ "recipes": [ "homebrew", "git", "rvm", "python", "node", "sinatra", "rails", "oh-my-zsh" ] }
