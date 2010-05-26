@@ -61,7 +61,7 @@ class Chef
           when "mongodb", "memcached"
           when "postgresql"
             unless ::File.directory?("#{PREFIX}/var/postgres")
-              system("#{PREFIX}/bin/initdb #{PREFIX}/var/postgres > /dev/null")
+              system("#{PREFIX}/bin/initdb #{PREFIX}/var/postgres > /dev/null 2>&1")
             end
           when "mysql"
             unless ::File.directory?("#{PREFIX}/var/mysql")
