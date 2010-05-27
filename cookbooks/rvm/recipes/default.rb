@@ -10,6 +10,14 @@ execute "install rvm for the user" do
   not_if  "test -d ~/.rvm"
 end
 
+script "updating rvm to the latest stable version" do
+  interpreter "bash"
+  code <<-EOS
+    source ~/.cider.profile
+    rvm update -—head
+  EOS
+end
+
 script "installing ruby" do
   interpreter "bash"
   code <<-EOS
@@ -17,16 +25,18 @@ script "installing ruby" do
     `rvm list | grep -q '#{DEFAULT_RUBY_VERSION}'`
     if [ $? -ne 0 ]; then
       rvm install #{DEFAULT_RUBY_VERSION}
-      rvm use #{DEFAULT_RUBY_VERSION} --default
     fi
   EOS
 end
 
-script "updating rvm to the latest stable version" do
+script "ensuringe a default ruby is set" do
   interpreter "bash"
   code <<-EOS
     source ~/.cider.profile
-    rvm update -—head
+    `which ruby | grep -q rvm`
+    if [ $? -ne 0 ]; then
+      rvm use #{DEFAULT_RUBY_VERSION} --default
+    fi
   EOS
 end
 
