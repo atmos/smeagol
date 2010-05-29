@@ -13,12 +13,13 @@ require root + '/providers/homebrew'
   homebrew pkg
 end
 
-### Installing npm is kinda painful
+### Installing npm is kinda painful, homebrew recipe coming soon
 npm_executable = "#{ENV['HOME']}/Developer/bin/npm"
+
 file npm_executable do
-  owner ENV['USER']
-  group "staff"
-  mode "0755"
+  owner  ENV['USER']
+  group  "staff"
+  mode   "0755"
   action :create
 end
 
@@ -26,13 +27,24 @@ template npm_executable do
   source "npm.erb"
 end
 
-directory "#{ENV['HOME']}/Developer/Cellar/npm" do
-  owner ENV['USER']
-  group "staff"
-  mode "0755"
+directory "setup npm install directory" do
+  mode      "0755"
+  path      "#{ENV['HOME']}/Developer/Cellar/npm/src"
+  group     "staff"
+  owner     ENV['USER']
+  recursive true
 end
 
-execute "fetching latest stable npm release" do
-  command "curl -L http://github.com/isaacs/npm/tarball/master | tar xz --strip 1; make"
-  cwd "#{ENV['HOME']}/Developer/Cellar/npm"
+execute "installing npm" do
+  command "git clone --depth 1 git://github.com/isaacs/npm.git .; make install-stable > ~/foo.log 2>&1"
+  cwd     "#{ENV['HOME']}/Developer/Cellar/npm/src"
+  path    [ "#{ENV['HOME']}/Developer/bin", "/usr/bin" ]
+  not_if  "test -e #{ENV['HOME']}/Developer/Cellar/npm/src/cli.js"
+end
+
+execute "updating npm" do
+  command "git pull && make install-stable > ~/foo.log 2>&1"
+  cwd     "#{ENV['HOME']}/Developer/Cellar/npm/src"
+  path    [ "#{ENV['HOME']}/Developer/bin", "/usr/bin" ]
+  only_if  "test -e #{ENV['HOME']}/Developer/Cellar/npm/src/cli.js"
 end
