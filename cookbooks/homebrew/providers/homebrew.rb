@@ -50,6 +50,7 @@ class Chef
         def load_plist_for(name)
           Chef::Log.info("Configuring #{name} to automatically start on login")
           destination_plist = "#{ENV['HOME']}/Library/LaunchAgents/#{plist_for(name)}"
+          system("mkdir -p #{ENV['HOME']}/Library/LaunchAgents")
           system("launchctl unload -w -F #{destination_plist} >/dev/null 2>&1")
           system("cp -f #{plist_fullpath_for(name)} #{destination_plist} >/dev/null 2>&1")
           system("launchctl load -w -F #{destination_plist} >/dev/null 2>&1")
