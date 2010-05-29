@@ -29,7 +29,7 @@ script "installing ruby" do
   EOS
 end
 
-script "ensuringe a default ruby is set" do
+script "ensuring a default ruby is set" do
   interpreter "bash"
   code <<-EOS
     source ~/.cider.profile
