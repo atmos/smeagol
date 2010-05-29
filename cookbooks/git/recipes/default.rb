@@ -12,11 +12,13 @@ template "#{ENV['HOME']}/.gitconfig" do
   group  'staff'
   source "dot.gitconfig.erb"
   variables({
-    :home     => ENV['HOME'],
-    :user     => ENV['USER'],
-    :editor   => ENV['EDITOR']   || fail("No editor set for your ~/.gitconfig"),
-    :email    => ENV['EMAIL']    || fail("No Email address set for your ~/.gitconfig"),
-    :fullname => ENV['FULLNAME'] || fail("No Full Name set for your ~/.gitconfig")
+    :home         => ENV['HOME'],
+    :user         => ENV['USER'],
+    :email        => ENV['EMAIL'],
+    :github_user  => ENV['GITHUB_USER'],
+    :github_token => ENV['GITHUB_TOKEN'],
+    :editor       => ENV['EDITOR']   || fail("No editor set for your ~/.gitconfig"),
+    :fullname     => ENV['FULLNAME'] || fail("No Full Name set for your ~/.gitconfig")
   })
 end
 
