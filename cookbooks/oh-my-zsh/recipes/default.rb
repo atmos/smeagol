@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 
-script "zsh install from github" do
+script "oh-my-zsh install from github" do
   interpreter "bash"
   code <<-EOS
     source ~/.cider.profile
