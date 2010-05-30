@@ -6,8 +6,8 @@
 DEFAULT_RUBY_VERSION = "1.8.7-p248"
 
 execute "install rvm for the user" do
-  command "rvm-install"
-  not_if  "test -d ~/.rvm"
+  command "rvm-install --prefix=~/Developer/.rvm >> ~/.cider.log 2>&1"
+  not_if  "test -d ~/Developer/.rvm"
 end
 
 script "updating rvm to the latest stable version" do

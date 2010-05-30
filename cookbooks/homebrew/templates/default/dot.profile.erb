@@ -1,7 +1,7 @@
 PATH="<%= @home %>/Developer/bin:$PATH"; export PATH
 MANPATH="<%= @home %>/Developer/share/man:$MANPATH"; export MANPATH
-if [[ -s <%= @home %>/.rvm/scripts/rvm ]] ; then
-  source <%= @home %>/.rvm/scripts/rvm
+if [[ -s <%= @home %>/Developer/.rvm/scripts/rvm ]] ; then
+  source <%= @home %>/Developer/.rvm/scripts/rvm
 fi
 
 if [[ -f <%= @home %>/.cider.profile.custom ]]; then
