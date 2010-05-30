@@ -36,14 +36,14 @@ directory "setup npm install directory" do
 end
 
 execute "installing npm" do
-  command "git clone --depth 1 git://github.com/isaacs/npm.git .; make install-stable > ~/foo.log 2>&1"
+  command "git clone --depth 1 git://github.com/isaacs/npm.git . >> ~/.cider.log 2>&1"
   cwd     "#{ENV['HOME']}/Developer/Cellar/npm/src"
   path    [ "#{ENV['HOME']}/Developer/bin", "/usr/bin" ]
   not_if  "test -e #{ENV['HOME']}/Developer/Cellar/npm/src/cli.js"
 end
 
 execute "updating npm" do
-  command "git pull && make install-stable > ~/foo.log 2>&1"
+  command "git pull >> ~/.cider.log 2>&1"
   cwd     "#{ENV['HOME']}/Developer/Cellar/npm/src"
   path    [ "#{ENV['HOME']}/Developer/bin", "/usr/bin" ]
   only_if  "test -e #{ENV['HOME']}/Developer/Cellar/npm/src/cli.js"
