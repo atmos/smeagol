@@ -35,16 +35,15 @@ directory "setup npm install directory" do
   recursive true
 end
 
-execute "installing npm" do
-  command "git clone --depth 1 git://github.com/isaacs/npm.git . >> ~/.cider.log 2>&1"
-  cwd     "#{ENV['HOME']}/Developer/Cellar/npm/src"
-  path    [ "#{ENV['HOME']}/Developer/bin", "/usr/bin" ]
-  not_if  "test -e #{ENV['HOME']}/Developer/Cellar/npm/src/cli.js"
-end
-
-execute "updating npm" do
-  command "git pull >> ~/.cider.log 2>&1"
-  cwd     "#{ENV['HOME']}/Developer/Cellar/npm/src"
-  path    [ "#{ENV['HOME']}/Developer/bin", "/usr/bin" ]
-  only_if  "test -e #{ENV['HOME']}/Developer/Cellar/npm/src/cli.js"
+script "configuring npm" do
+  interpreter "bash"
+  code <<-EOS
+    source ~/.cider.profile
+    cd #{ENV['HOME']}/Developer/Cellar/npm/src
+    if [[ -f "./cli.js" ]]; then
+      git pull >> ~/.cider.log 2>&1
+    else
+      git clone --depth 1 git://github.com/isaacs/npm.git . >> ~/.cider.log 2>&1
+    fi
+  EOS
 end
