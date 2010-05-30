@@ -51,6 +51,7 @@ script "updating homebrew from github" do
   EOS
 end
 
+homebrew_db "redis"
 homebrew_db "mongodb"
 homebrew_db "memcached"
 homebrew_db "postgresql"
@@ -59,32 +60,4 @@ homebrew_db "mysql"
 ### install a bunch of utils
 %w(tig ack sqlite wget fortune proctools markdown ctags-exuberant).each do |pkg|
   homebrew pkg
-end
-
-### Redis is still kind of weird to get from homebrew
-script "installing redis HEAD" do
-  interpreter "bash"
-  code <<-EOS
-    source ~/.cider.profile
-    brew install redis -H
-  EOS
-end
-
-template "#{ENV['HOME']}/Library/LaunchAgents/io.redis.redis-server.plist" do
-  mode   0644
-  owner  ENV['USER']
-  group  'staff'
-  source "io.redis.redis-server.plist.erb"
-  variables({
-    :root => "#{ENV['HOME']}/Developer"
-  })
-end
-
-script "setup redis to start on login" do
-  interpreter "bash"
-  code <<-EOS
-    source ~/.cider.profile
-    launchctl load -w -F ~/Library/LaunchAgents/io.redis.redis-server.plist > ~/.cider.log 2>&1
-    echo 'complete'
-  EOS
 end

@@ -38,6 +38,7 @@ class Chef
       class HomebrewDb < Homebrew
         def plist_for(name)
           { "mysql"      => "com.mysql.mysqld.plist",
+            "redis"      => "io.redis.redis-server.plist",
             "mongodb"    => "org.mongodb.mongod.plist",
             "memcached"  => "com.danga.memcached.plist",
             "postgresql" => "org.postgresql.postgres.plist" }[name]
