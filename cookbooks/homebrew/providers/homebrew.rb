@@ -60,7 +60,7 @@ class Chef
         def install_package(name, version)
           super(name, version)
           case name
-          when "mongodb", "memcached"
+          when "mongodb", "memcached", "redis"
           when "postgresql"
             unless ::File.directory?("#{PREFIX}/var/postgres")
               system("#{PREFIX}/bin/initdb #{PREFIX}/var/postgres > /dev/null 2>&1")
