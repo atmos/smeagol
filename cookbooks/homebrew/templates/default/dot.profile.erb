@@ -1,5 +1,7 @@
 PATH="<%= @home %>/Developer/bin:$PATH"; export PATH
 MANPATH="<%= @home %>/Developer/share/man:$MANPATH"; export MANPATH
+
+export rvm_path=<%= @home %>/Developer/.rvm
 if [[ -s <%= @home %>/Developer/.rvm/scripts/rvm ]] ; then
   source <%= @home %>/Developer/.rvm/scripts/rvm
 fi
@@ -7,6 +9,3 @@ fi
 if [[ -f <%= @home %>/.cider.profile.custom ]]; then
   source ~/.cider.profile.custom
 fi
-
-alias bees="bundle exec spec"
-alias beer="bundle exec rake"

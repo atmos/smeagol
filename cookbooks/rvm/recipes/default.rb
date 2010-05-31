@@ -5,9 +5,16 @@
 
 DEFAULT_RUBY_VERSION = "1.8.7-p248"
 
-execute "install rvm for the user" do
-  command "rvm-install --prefix=~/Developer/.rvm >> ~/.cider.log 2>&1"
-  not_if  "test -d ~/Developer/.rvm"
+script "installing rvm to ~/Developer" do
+  interpreter "bash"
+  code <<-EOS
+    source ~/.cider.profile
+    if [[ ! -d ~/Developer/.rvm ]]; then
+      git clone git://github.com/atmos/rvm.git rvm
+      cd rvm
+      bin/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cider.log 2>&1
+    fi
+  EOS
 end
 
 script "updating rvm to the latest stable version" do
