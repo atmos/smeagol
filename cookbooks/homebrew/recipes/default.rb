@@ -1,7 +1,8 @@
 #
 # Cookbook Name:: homebrew
-# Recipe:: Mac OSX Bootstrapper
+# Recipe:: homebrew
 #
+
 root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 require root + '/resources/homebrew'
@@ -22,10 +23,7 @@ template "#{ENV['HOME']}/.cider.profile" do
   owner  ENV['USER']
   group  'staff'
   source "dot.profile.erb"
-  variables({
-    :home        => ENV['HOME'],
-    :rvm_default => ENV['DEFAULT_RVM_VM'] || '1.8.7-p249'
-  })
+  variables({ :home => ENV['HOME'] })
 end
 
 %w(bash_profile bashrc zshrc).each do |config_file|
@@ -46,7 +44,6 @@ script "updating homebrew from github" do
   code <<-EOS
     source ~/.cider.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    echo $PATH >> ~/.cider.log 2>&1
     ~/Developer/bin/brew update >> ~/.cider.log 2>&1
   EOS
 end

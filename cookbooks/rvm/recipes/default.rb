@@ -90,6 +90,8 @@ end
   end
 end
 
+homebrew "rpg"
+
 template "#{ENV['HOME']}/.irbrc" do
   source "dot.irbrc.erb"
 end
