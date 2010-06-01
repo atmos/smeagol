@@ -30,11 +30,12 @@ script "installed macvim from google code" do
   interpreter "bash"
   code <<-EOS
     source ~/.cider.profile
-    if [ ! -d /Applications/MacVim.app ]; then
+    if [ ! -e ~/Developer/bin/mvim ]; then
+      rm -rf /Applications/MacVim.app
       curl http://macvim.googlecode.com/files/MacVim-snapshot-52.tbz -o - | tar xj -
-      cd MacVim-snapshot-52 >> ~/.cider.log 2>&1
-      cp mvim ~/Developer/bin >> ~/.cider.log 2>&1
-      cp -r MacVim.app /Applications/ >> ~/.cider.log 2>&1
+      cd MacVim-snapshot-52
+      cp mvim ~/Developer/bin
+      cp -r MacVim.app /Applications/
     fi
   EOS
 end

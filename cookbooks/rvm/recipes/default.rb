@@ -63,15 +63,20 @@ end
       source ~/.cider.profile
       `gem list #{name} | grep -q '#{version}'`
       if [[ $? -ne 0 ]]; then
-        gem install #{name} --no-rdoc --no-ri
+        gem install #{name} --no-rdoc --no-ri >> ~/.cider/stdout.log 2>> ~/.cider/stderr.log
       fi
     EOS
   end
 end
 
-{ 'wirble' => '0.3.1', 'awesome_print' => '0.2.0', 'hirb' => '0.3.2',
-  'what_methods' => '1.0.1', 'looksee' => '0.2.1', 'sketches' => '0.1.1',
-  'net-http-spy' => '0.2.1', 'map_by_method' => '0.8.3'
+{ 'wirble'        => '0.3.1',
+  'awesome_print' => '0.2.0',
+  'hirb'          => '0.3.2',
+  'what_methods'  => '1.0.1',
+  'looksee'       => '0.2.1',
+  'sketches'      => '0.1.1',
+  'net-http-spy'  => '0.2.1',
+  'map_by_method' => '0.8.3'
   }.each do |name, version|
   script "installed #{name}(#{version}) to liven up your ~/.irbrc a little" do
     interpreter "bash"
