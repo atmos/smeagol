@@ -55,6 +55,6 @@ homebrew_db "postgresql"
 homebrew_db "mysql"
 
 ### install a bunch of utils
-%w(tig ack sqlite wget fortune proctools markdown ctags-exuberant).each do |pkg|
+%w(tig gist ack sqlite wget fortune proctools markdown ctags-exuberant).each do |pkg|
   homebrew pkg
 end
