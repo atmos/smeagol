@@ -55,6 +55,10 @@ template "#{ENV['HOME']}/.gemrc" do
   source "dot.gemrc.erb"
 end
 
+template "#{ENV['HOME']}/.rdebugrc" do
+  source "dot.rdebugrc.erb"
+end
+
 { 'bundler' => '0.9.25', 'bundler08' => '0.8.5', 'cider' => '0.1.3',
   'mysql'   => '2.8.1' }.each do |name, version|
   script "updating to the latest #{name} -> #{version}" do
