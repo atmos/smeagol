@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: rails
-# Recipe:: default
+# Cookbook Name:: ruby
+# Recipe:: rails
 #
 EY_GEM_VERSION      = "0.3.2"
 RAILS_2_VERSION     = "2.3.8"

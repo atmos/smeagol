@@ -47,14 +47,3 @@ script "updating homebrew from github" do
     ~/Developer/bin/brew update >> ~/.cider.log 2>&1
   EOS
 end
-
-homebrew_db "redis"
-homebrew_db "mongodb"
-homebrew_db "memcached"
-homebrew_db "postgresql"
-homebrew_db "mysql"
-
-### install a bunch of utils
-%w(tig gist ngrep ack sqlite wget fortune proctools markdown ctags-exuberant).each do |pkg|
-  homebrew pkg
-end

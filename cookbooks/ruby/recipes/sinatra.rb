@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: sinatra
-# Recipe:: default
+# Cookbook Name:: ruby
+# Recipe:: sinatra
 #
 SINATRA_VERSION = "1.0"
 
