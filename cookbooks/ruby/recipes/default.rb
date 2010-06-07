@@ -55,4 +55,9 @@ template "#{ENV['HOME']}/.gemrc" do
   source "dot.gemrc.erb"
 end
 
+template "#{ENV['HOME']}/.rdebugrc" do
+    source "dot.rdebugrc.erb"
+end
+
+
 homebrew "rpg"
