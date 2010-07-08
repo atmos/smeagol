@@ -3,7 +3,7 @@
 # Recipe:: bundler
 #
 
-{ 'bundler' => '0.9.25', 'bundler08' => '0.8.5', 'cider' => '0.1.3',
+{ 'bundler' => '0.9.26', 'bundler08' => '0.8.5', 'cider' => '0.1.4',
   'mysql'   => '2.8.1' }.each do |name, version|
   script "updating to the latest #{name} -> #{version}" do
     interpreter "bash"
