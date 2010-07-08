@@ -2,7 +2,7 @@
 # Cookbook Name:: ruby
 # Recipe:: rails
 #
-EY_GEM_VERSION      = "0.9.2"
+EY_GEM_VERSION      = "0.9.0"
 RAILS_2_VERSION     = "2.3.8"
 RAILS_3_VERSION     = "3.0.0.beta3"
 HEROKU_GEM_VERSION  = "1.9.11"
