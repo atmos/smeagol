@@ -51,6 +51,14 @@ script "ensuring a default ruby is set" do
   EOS
 end
 
+script "ensuring default rubygems are installed" do
+  interpreter "bash"
+  code <<-EOS
+    source ~/.cider.profile
+    rvm gemset load ~/Developer/.rvm/gemsets/default.gems
+  EOS
+end
+
 execute "cleanup rvm build artifacts" do
   command "find ~/Developer/.rvm/src -depth 1 | grep -v src/rvm | xargs rm -rf "
 end
