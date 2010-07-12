@@ -21,8 +21,12 @@ script "updating rvm to the latest stable version" do
   interpreter "bash"
   code <<-EOS
     source ~/.cider.profile
-    rvm update -—head
+    rvm update -—head >> ~/.cider.log 2>&1
   EOS
+end
+
+template "#{ENV['HOME']}/Developer/.rvm/gemsets/default.gems" do
+  source "default.gems.erb"
 end
 
 script "installing ruby" do
@@ -48,7 +52,7 @@ script "ensuring a default ruby is set" do
 end
 
 execute "cleanup rvm build artifacts" do
-  command "find ~/.rvm/src -depth 1 | grep -v src/rvm | xargs rm -rf "
+  command "find ~/Developer/.rvm/src -depth 1 | grep -v src/rvm | xargs rm -rf "
 end
 
 template "#{ENV['HOME']}/.gemrc" do
@@ -58,6 +62,5 @@ end
 template "#{ENV['HOME']}/.rdebugrc" do
     source "dot.rdebugrc.erb"
 end
-
 
 homebrew "rpg"

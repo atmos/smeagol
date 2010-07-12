@@ -1,7 +1,7 @@
 {
   "recipes": [
      "homebrew", "homebrew::dbs", "homebrew::misc", "git",
-     "ruby", "ruby::irbrc", "ruby::rails", "ruby::sinatra",
-     "python", "erlang", "node", "oh-my-zsh", "atmos.vim"
+     "ruby", "ruby::irbrc", "python", "erlang", "node",
+     "oh-my-zsh", "atmos.vim"
   ]
 }
