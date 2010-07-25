@@ -41,6 +41,7 @@ script "configuring npm" do
     source ~/.cider.profile
     cd #{ENV['HOME']}/Developer/Cellar/npm/src
     if [[ -f "./cli.js" ]]; then
+      git reset --hard origin/master 2>&1
       git pull >> ~/.cider.log 2>&1
     else
       git clone --depth 1 git://github.com/isaacs/npm.git . >> ~/.cider.log 2>&1
