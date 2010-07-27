@@ -48,3 +48,15 @@ script "configuring npm" do
     fi
   EOS
 end
+
+
+script "configuring ndistro" do
+  interpreter "bash"
+  code <<-EOS
+    source ~/.cider.profile
+    cd #{ENV['HOME']}/Developer/bin
+
+    curl -# -L http://github.com/visionmedia/ndistro/raw/master/bin/ndistro > ndistro 2> ~/.cider.log
+    chmod 0755 ndistro
+  EOS
+end
