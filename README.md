@@ -28,7 +28,7 @@ Running
     % EDITOR="vim" \
       GITHUB_USER="fightclub" \
       GITHUB_TOKEN="..." \
-      EMAIL="tyler@paperstreetsoap.com"
+      EMAIL="tyler@paperstreetsoap.com" \
       FULLNAME="Tyler Durden" \
       rake smeagol:install
 
