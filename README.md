@@ -17,14 +17,20 @@ What it does
 * Installs a pretty sane ~/.irbrc
 * Installs a badass [node.js] development environment
 * Installs a modern [python] environment
-* Installs MacVim and the mvim shortcut
+* Installs an [ewlang] environment
+* Installs [MacVim] and the mvim shortcut
 
 This is what I run on my system, [cider][cider] is a subset of that.
 
 Running
 =======
 
-    % EDITOR="vim" GITHUB_USER="fightclub" GITHUB_TOKEN="..." EMAIL="tyler@paperstreetsoap.com" FULLNAME="Tyler Durden" rake smeagol:install
+    % EDITOR="vim" \
+      GITHUB_USER="fightclub" \
+      GITHUB_TOKEN="..." \
+      EMAIL="tyler@paperstreetsoap.com"
+      FULLNAME="Tyler Durden" \
+      rake smeagol:install
 
 You may be prompted for your sudo password at some point during installation.  Everything is getting installed as your user though.
 
@@ -33,6 +39,8 @@ You may be prompted for your sudo password at some point during installation.  E
 [cider]: http://ciderapp.org
 [mysql]: http://www.mysql.com/
 [redis]: http://code.google.com/p/redis/
+[MacVim]: http://code.google.com/p/macvim/
+[ewlang]: http://www.erlang.org/
 [python]: http://www.python.org
 [mongodb]: http://www.mongodb.org/
 [node.js]: http://nodejs.org
