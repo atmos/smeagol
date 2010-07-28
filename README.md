@@ -32,8 +32,6 @@ Running
       FULLNAME="Tyler Durden" \
       rake smeagol:install
 
-You may be prompted for your sudo password at some point during installation.  Everything is getting installed as your user though.
-
 [git]: http://git-scm.com/
 [rvm]: http://rvm.beginrescueend.com
 [cider]: http://ciderapp.org
