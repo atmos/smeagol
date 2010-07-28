@@ -9,14 +9,14 @@ FWIW it was easier to just write bash for this. :(
 What it does
 ============
 
-* Sets you up with homebrew
-* Installs git from homebrew, sets up ~/.gitconfig
-* Installs postgresql, mysql, redis, and mongodb
-* Installs rvm and sets up 1.8.7 to be the default, self manages on 1.9.2 as well
-* Installs common ruby frameworks, imagemagick, sqlite3 and all that bullshit
+* Sets you up with [homebrew]
+* Installs [git] from homebrew, sets up ~/.gitconfig
+* Installs [postgresql], [mysql], [redis], and [mongodb]
+* Installs [rvm] and sets up 1.8.7 to be the default, self manages on 1.9.2 as well
+* Installs common ruby gems: rails 3, sinatra, fog, sqlite3, imagemagick, and all that bullshit
 * Installs a pretty sane ~/.irbrc
-* Installs a badass node.js development environment
-* Installs a modern python environment
+* Installs a badass [node.js] development environment
+* Installs a modern [python] environment
 * Installs MacVim and the mvim shortcut
 
 This is what I run on my system, [cider][cider] is a subset of that.
@@ -24,12 +24,18 @@ This is what I run on my system, [cider][cider] is a subset of that.
 Running
 =======
 
-  % EDITOR="vim" GITHUB_USER="fightclub" GITHUB_TOKEN="..." EMAIL="tyler@paperstreetsoap.com" FULLNAME="Tyler Durden" rake smeagol:install
+    % EDITOR="vim" GITHUB_USER="fightclub" GITHUB_TOKEN="..." EMAIL="tyler@paperstreetsoap.com" FULLNAME="Tyler Durden" rake smeagol:install
 
 You may be prompted for your sudo password at some point during installation.  Everything is getting installed as your user though.
 
-http://wiki.opscode.com/display/chef/Chef+Repository
-
-[smeagol]: http://en.wikipedia.org/wiki/Gollum
+[git]: http://git-scm.com/
+[rvm]: http://rvm.beginrescueend.com
 [cider]: http://ciderapp.org
-
+[mysql]: http://www.mysql.com/
+[redis]: http://code.google.com/p/redis/
+[python]: http://www.python.org
+[mongodb]: http://www.mongodb.org/
+[node.js]: http://nodejs.org
+[smeagol]: http://en.wikipedia.org/wiki/Gollum
+[homebrew]: http://github.com/mxcl/homebrew
+[postgresql]: http://www.postgresql.org/
