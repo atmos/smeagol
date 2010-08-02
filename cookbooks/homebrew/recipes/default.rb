@@ -7,6 +7,7 @@ root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 require root + '/resources/homebrew'
 require root + '/providers/homebrew'
+require 'etc'
 
 directory "#{ENV['HOME']}/Developer" do
   action :create
@@ -21,7 +22,7 @@ end
 template "#{ENV['HOME']}/.cider.profile" do
   mode   0700
   owner  ENV['USER']
-  group  'staff'
+  group  Etc.getgrgid(Process.gid).name
   source "dot.profile.erb"
   variables({ :home => ENV['HOME'] })
 end

@@ -5,11 +5,12 @@
 root = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "homebrew"))
 require root + '/resources/homebrew'
 require root + '/providers/homebrew'
+require 'etc'
 
 template "#{ENV['HOME']}/.gitconfig" do
   mode   0700
   owner  ENV['USER']
-  group  'staff'
+  group  Etc.getgrgid(Process.gid).name
   source "dot.gitconfig.erb"
   variables({
     :home         => ENV['HOME'],

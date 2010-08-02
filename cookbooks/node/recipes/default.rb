@@ -7,6 +7,8 @@ root = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "homebrew"
 
 require root + '/resources/homebrew'
 require root + '/providers/homebrew'
+require 'etc'
+
 
 ### install a bunch of utils
 %w(rlwrap node rlwrap kiwi).each do |pkg|
@@ -18,7 +20,7 @@ npm_executable = "#{ENV['HOME']}/Developer/bin/npm"
 
 file npm_executable do
   owner  ENV['USER']
-  group  "staff"
+  group  Etc.getgrgid(Process.gid).name
   mode   "0755"
   action :create
 end
@@ -30,7 +32,7 @@ end
 directory "setup npm install directory" do
   mode      "0755"
   path      "#{ENV['HOME']}/Developer/Cellar/npm/src"
-  group     "staff"
+  group     Etc.getgrgid(Process.gid).name
   owner     ENV['USER']
   recursive true
 end
