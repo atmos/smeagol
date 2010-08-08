@@ -25,10 +25,6 @@ script "updating rvm to the latest stable version" do
   EOS
 end
 
-template "#{ENV['HOME']}/Developer/.rvm/gemsets/default.gems" do
-  source "default.gems.erb"
-end
-
 script "installing ruby" do
   interpreter "bash"
   code <<-EOS
@@ -49,6 +45,10 @@ script "ensuring a default ruby is set" do
       rvm use #{DEFAULT_RUBY_VERSION} --default
     fi
   EOS
+end
+
+template "#{ENV['HOME']}/Developer/.rvm/gemsets/default.gems" do
+  source "default.gems.erb"
 end
 
 script "ensuring default rubygems are installed" do

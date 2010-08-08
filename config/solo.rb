@@ -5,6 +5,7 @@ smeagol_root = "#{Dir.tmpdir}/smeagol"
 
 log_level          :info
 log_location       STDOUT
+sandbox_path       "#{smeagol_root}/sandboxes"
 file_cache_path    "#{smeagol_root}/cookbooks"
 file_backup_path   "#{smeagol_root}/backup"
 cache_options      ({ :path => "#{smeagol_root}/cache/checksums", :skip_expires => true })
