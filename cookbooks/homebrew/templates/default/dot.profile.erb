@@ -3,8 +3,9 @@ MANPATH="<%= @home %>/Developer/share/man:$MANPATH"; export MANPATH
 CFLAGS="-I<%= @home %>/Developer/include"; export CFLAGS
 CPPFLAGS="-I<%= @home %>/Developer/include"; export CPPFLAGS
 CXXFLAGS="-I<%= @home %>/Developer/include"; export CXXFLAGS
+LDFLAGS="-L<%= @home %>/Developer/lib"; export LDFLAGS
 
-export CONFIGURE_ARGS="--with-cflags='$CFLAGS'"
+export CONFIGURE_ARGS="--with-cflags='$CFLAGS' --with-ldflags='$LDFLAGS'"
 
 export rvm_path=<%= @home %>/Developer/.rvm
 if [[ -s <%= @home %>/Developer/.rvm/scripts/rvm ]] ; then
