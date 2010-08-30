@@ -22,5 +22,3 @@ template "#{ENV['HOME']}/.gitconfig" do
     :fullname     => ENV['FULLNAME'] || fail("No Full Name set for your ~/.gitconfig")
   })
 end
-
-homebrew "hub"
