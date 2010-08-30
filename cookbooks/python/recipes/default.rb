@@ -9,3 +9,4 @@ require root + "/resources/homebrew"
 require root + "/providers/homebrew"
 
 homebrew "python"
+homebrew "distribute"
