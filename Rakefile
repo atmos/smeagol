@@ -64,8 +64,6 @@ begin
         system("ps auwwx | grep #{server_type} | awk '{print $2}' | xargs kill -9")
         system("rm ~/Library/LaunchAgents/*.#{server_type}*")
       end
-      sleep 2
-      system("sudo rm -rf /usr/local")
     end
   end
 rescue LoadError => e
