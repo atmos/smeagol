@@ -11,7 +11,7 @@ require 'etc'
 
 
 ### install a bunch of utils
-%w(rlwrap node coffee-script npm rlwrap kiwi).each do |pkg|
+%w(rlwrap node npm rlwrap kiwi).each do |pkg|
   homebrew pkg
 end
 
