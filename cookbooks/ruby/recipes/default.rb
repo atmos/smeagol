@@ -8,11 +8,11 @@ DEFAULT_RUBY_VERSION = "1.8.7-p248"
 script "installing rvm to ~/Developer" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cider.profile
+    source ~/.cinderella.profile
     if [[ ! -d ~/Developer/.rvm ]]; then
       git clone git://github.com/atmos/rvm.git rvm
       cd rvm
-      bin/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cider.log 2>&1
+      bin/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cinderella.log 2>&1
     fi
   EOS
 end
@@ -20,15 +20,15 @@ end
 script "updating rvm to the latest stable version" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cider.profile
-    rvm update -—head >> ~/.cider.log 2>&1
+    source ~/.cinderella.profile
+    rvm update -—head >> ~/.cinderella.log 2>&1
   EOS
 end
 
 script "installing ruby" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cider.profile
+    source ~/.cinderella.profile
     `rvm list | grep -q '#{DEFAULT_RUBY_VERSION}'`
     if [ $? -ne 0 ]; then
       rvm install #{DEFAULT_RUBY_VERSION}
@@ -39,7 +39,7 @@ end
 script "ensuring a default ruby is set" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cider.profile
+    source ~/.cinderella.profile
     `which ruby | grep -q rvm`
     if [ $? -ne 0 ]; then
       rvm use #{DEFAULT_RUBY_VERSION} --default
@@ -54,7 +54,7 @@ end
 script "ensuring default rubygems are installed" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cider.profile
+    source ~/.cinderella.profile
     rvm gemset load ~/Developer/.rvm/gemsets/default.gems
   EOS
 end

@@ -19,7 +19,19 @@ execute "download homebrew installer" do
   not_if  "test -e ~/Developer/bin/brew"
 end
 
-template "#{ENV['HOME']}/.cider.profile" do
+script "install_something" do
+  interpreter "bash"
+  code <<-EOS
+  if [ -f ~/.cider.profile ]; then
+    rm ~/.cider.profile
+  fi
+  if [ -f ~/.cider.profile.custom ]; then
+    mv ~/.cider.profile.custom ~/.cinderella.profile.custom
+  fi
+  EOS
+end
+
+template "#{ENV['HOME']}/.cinderella.profile" do
   mode   0700
   owner  ENV['USER']
   group  Etc.getgrgid(Process.gid).name
@@ -28,23 +40,23 @@ template "#{ENV['HOME']}/.cider.profile" do
 end
 
 %w(bash_profile bashrc zshrc).each do |config_file|
-  execute "include cider environment into defaults for ~/.#{config_file}" do
-    command "if [ -f ~/.#{config_file} ]; then echo 'source ~/.cider.profile' >> ~/.#{config_file}; fi"
-    not_if  "grep -q 'cider.profile' ~/.#{config_file}"
+  execute "include cinderella environment into defaults for ~/.#{config_file}" do
+    command "if [ -f ~/.#{config_file} ]; then echo 'source ~/.cinderella.profile' >> ~/.#{config_file}; fi"
+    not_if  "grep -q 'cinderella.profile' ~/.#{config_file}"
   end
 end
 
-execute "setup cider profile sourcing in ~/.profile" do
-  command "echo 'source ~/.cider.profile' >> ~/.profile"
-  not_if  "grep -q 'cider.profile' ~/.profile"
+execute "setup cinderella profile sourcing in ~/.profile" do
+  command "echo 'source ~/.cinderella.profile' >> ~/.profile"
+  not_if  "grep -q 'cinderella.profile' ~/.profile"
 end
 
 homebrew "git"
 script "updating homebrew from github" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cider.profile
+    source ~/.cinderella.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    ~/Developer/bin/brew update >> ~/.cider.log 2>&1
+    ~/Developer/bin/brew update >> ~/.cinderella.log 2>&1
   EOS
 end

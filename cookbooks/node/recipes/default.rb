@@ -18,10 +18,10 @@ end
 script "configuring ndistro" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cider.profile
+    source ~/.cinderella.profile
     cd #{ENV['HOME']}/Developer/bin
 
-    curl -# -L http://github.com/visionmedia/ndistro/raw/master/bin/ndistro > ndistro 2> ~/.cider.log
+    curl -# -L http://github.com/visionmedia/ndistro/raw/master/bin/ndistro > ndistro 2> ~/.cinderella.log
     chmod 0755 ndistro
   EOS
 end
