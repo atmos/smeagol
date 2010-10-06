@@ -55,7 +55,7 @@ script "ensuring default rubygems are installed" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    rvm gemset load ~/Developer/.rvm/gemsets/default.gems
+    rvm gemset load ~/Developer/.rvm/gemsets/default.gems >> ~/.cinderella/bootstrap.log 2>&1
   EOS
 end
 
