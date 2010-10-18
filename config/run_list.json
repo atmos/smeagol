@@ -2,6 +2,6 @@
   "recipes": [
      "homebrew", "homebrew::dbs", "homebrew::misc", "git",
      "ruby", "ruby::irbrc", "python", "erlang", "node",
-     "oh-my-zsh", "atmos.vim"
+     "oh-my-zsh", "mvim"
   ]
 }
