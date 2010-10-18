@@ -3,27 +3,33 @@
 # Recipe:: default
 #
 
-script "installing http://github.com/scrooloose/vimfiles" do
+script "installing http://github.com/carlhuda/janus" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
     if [ ! -d ~/.vim ]; then
-      git clone git://github.com/scrooloose/vimfiles.git ~/.vim
+      git clone git://github.com/carlhuda/janus.git ~/.vim
       cd ~/.vim
-      git submodule init
-      git submodule update
+      rake
+    elif [ ! -d ~/.vim/Rakefile ]; then
+      for i in ~/.vim ~/.vimrc ~/.gvimrc; do [ -e $i ] && mv $i $i.old; done
+      git clone git://github.com/carlhuda/janus.git ~/.vim
+      cd ~/.vim
+      rake
     fi
   EOS
 end
 
-if ENV['DONT_TOUCH_MY_VIMRC'].nil?
-  directory "#{ENV['HOME']}/.vimswap" do
-    action 'create'
-  end
+directory "#{ENV['HOME']}/.vimswap" do
+  action 'create'
+end
 
-  template "#{ENV['HOME']}/.vimrc" do
-    source "dot.vimrc.erb"
-  end
+template "#{ENV['HOME']}/.vimrc.local" do
+  source "dot.vimrc.erb"
+end
+
+template "#{ENV['HOME']}/.gvimrc.local" do
+  source "dot.vimrc.erb"
 end
 
 script "installed macvim from google code" do

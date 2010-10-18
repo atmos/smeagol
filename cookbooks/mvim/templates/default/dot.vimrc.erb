@@ -1,12 +1,10 @@
-source ~/.vim/vimrc
-
 let g:NERDTreeMapOpenSplit = 'i'
 set nu
 set et
 set ts=2
 set sw=2
+set ruler
 colorscheme vibrantink
-let g:fuzzy_ignore = "gems/*:coverage"
 "set columns=145
 "set lines=48
 set guioptions-=T
@@ -17,10 +15,8 @@ set backupdir=~/.vimswap
 set directory=~/.vimswap
 set nobackup
 set noswapfile
-"set maxwinheight=3
 set winheight=11
 command! Trail :%s/\s\+$//g
 nnoremap <D-r> :NERDTreeToggle<CR>
 set vb
 set t_vb=
-let g:loaded_syntastic_plugin = 1
