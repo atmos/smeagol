@@ -13,6 +13,10 @@ directory "#{ENV['HOME']}/Developer" do
   action :create
 end
 
+directory "#{ENV['HOME']}/.cinderella" do
+  action :create
+end
+
 execute "download homebrew installer" do
   command "/usr/bin/curl -sfL http://github.com/mxcl/homebrew/tarball/master | /usr/bin/tar xz -m --strip 1"
   cwd     "#{ENV['HOME']}/Developer"
@@ -57,6 +61,6 @@ script "updating homebrew from github" do
   code <<-EOS
     source ~/.cinderella.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    ~/Developer/bin/brew update >> ~/.cinderella.log 2>&1
+    ~/Developer/bin/brew update >> ~/.cinderella/brew.log 2>&1
   EOS
 end

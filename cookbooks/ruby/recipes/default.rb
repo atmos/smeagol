@@ -12,7 +12,7 @@ script "installing rvm to ~/Developer" do
     if [[ ! -d ~/Developer/.rvm ]]; then
       git clone git://github.com/atmos/rvm.git rvm
       cd rvm
-      bin/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cinderella.log 2>&1
+      bin/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cinderella/ruby.log 2>&1
     fi
   EOS
 end
@@ -21,7 +21,7 @@ script "updating rvm to the latest stable version" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    rvm update -—head >> ~/.cinderella.log 2>&1
+    rvm update -—head >> ~/.cinderella/ruby.log 2>&1
   EOS
 end
 
@@ -55,7 +55,7 @@ script "ensuring default rubygems are installed" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    rvm gemset load ~/Developer/.rvm/gemsets/default.gems >> ~/.cinderella/bootstrap.log 2>&1
+    rvm gemset load ~/Developer/.rvm/gemsets/default.gems >> ~/.cinderella/ruby.log 2>&1
   EOS
 end
 
