@@ -11,7 +11,7 @@ require 'etc'
 
 
 ### install a bunch of utils
-%w(rlwrap node rlwrap).each do |pkg|
+%w(rlwrap node npm rlwrap).each do |pkg|
   homebrew pkg
 end
 
