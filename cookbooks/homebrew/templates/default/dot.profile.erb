@@ -4,7 +4,6 @@ CFLAGS="-I<%= @home %>/Developer/include"; export CFLAGS
 CPPFLAGS="-I<%= @home %>/Developer/include"; export CPPFLAGS
 CXXFLAGS="-I<%= @home %>/Developer/include"; export CXXFLAGS
 LDFLAGS="-L<%= @home %>/Developer/lib"; export LDFLAGS
-NODE_PATH="<%= @home %>/Developer/lib/node"; export NODE_PATH
 
 export CONFIGURE_ARGS="--with-cflags='$CFLAGS' --with-ldflags='$LDFLAGS'"
 
@@ -15,6 +14,10 @@ fi
 
 if [[ -d <%= @home %>/Developer/Cellar/python/2.7/bin ]]; then
   export PATH=~/Developer/Cellar/python/2.7/bin:$PATH
+fi
+
+if [[ -f <%= @home %>/Developer/.nvm/nvm.sh ]]; then
+  source <%= @home %>/Developer/.nvm/nvm.sh
 fi
 
 if [[ -f <%= @home %>/.cinderella.profile.custom ]]; then
