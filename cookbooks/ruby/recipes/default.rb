@@ -47,6 +47,10 @@ script "ensuring a default ruby is set" do
   EOS
 end
 
+directory "#{ENV['HOME']}/Developer/.rvm/gemsets" do
+  action 'create'
+end
+
 template "#{ENV['HOME']}/Developer/.rvm/gemsets/default.gems" do
   source "default.gems.erb"
 end
