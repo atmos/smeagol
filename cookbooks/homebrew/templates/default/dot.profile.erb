@@ -7,7 +7,6 @@ LDFLAGS="-L<%= @home %>/Developer/lib"; export LDFLAGS
 
 export CONFIGURE_ARGS="--with-cflags='$CFLAGS' --with-ldflags='$LDFLAGS'"
 
-export rvm_path=<%= @home %>/Developer/.rvm
 if [[ -s <%= @home %>/Developer/.rvm/scripts/rvm ]] ; then
   source <%= @home %>/Developer/.rvm/scripts/rvm
 fi

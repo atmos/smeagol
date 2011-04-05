@@ -3,16 +3,27 @@
 # Recipe:: default
 #
 
+RVM_INSTALL_ROOT     = "#{ENV['HOME']}/Developer/.rvm"
 DEFAULT_RUBY_VERSION = "1.8.7-p248"
+
+template "#{ENV['HOME']}/.rvmrc" do
+  mode   0700
+  owner  ENV['USER']
+  group  Etc.getgrgid(Process.gid).name
+  source "dot.rvmrc.erb"
+  variables({ :home => ENV['HOME'] })
+end
 
 script "installing rvm to ~/Developer" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    if [[ ! -d ~/Developer/.rvm ]]; then
-      git clone git://github.com/atmos/rvm.git rvm
-      cd rvm
-      bin/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cinderella/ruby.log 2>&1
+    if [[ ! -d #{RVM_INSTALL_ROOT} ]]; then
+      if [[ -d ./rvm ]]; then
+        rm -rf ./rvm
+      fi
+      git clone git://github.com/wayneeseguin/rvm.git >> ~/.cinderella/ruby.log
+      cd rvm && ./install >> ~/.cinderella/ruby.log
     fi
   EOS
 end
@@ -21,7 +32,7 @@ script "updating rvm to the latest stable version" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    rvm update -—head >> ~/.cinderella/ruby.log 2>&1
+    rvm update --head >> ~/.cinderella/ruby.log 2>&1
   EOS
 end
 
