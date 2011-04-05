@@ -10,6 +10,6 @@ require root + "/providers/homebrew"
 
 homebrew "python"
 
-execute "install pip" do
-  command "easy_install pip"
-end
+# execute "install pip" do
+#   command "easy_install pip"
+# end
