@@ -64,3 +64,6 @@ script "updating homebrew from github" do
     ~/Developer/bin/brew update >> ~/.cinderella/brew.log 2>&1
   EOS
 end
+
+homebrew "nginx"
+homebrew "solr"
