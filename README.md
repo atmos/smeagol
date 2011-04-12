@@ -31,6 +31,20 @@ Running
       FULLNAME="Tyler Durden" \
       rake smeagol:install
 
+Disabling Services
+==================
+
+Smeagol installs a gem called lunchy which makes it trivial to
+enable/disable the services that are installed by default.
+
+    % ps auwwx | grep mongo
+    atmos      202   0.2  0.0  2462220   4120   ??  S    Sat03PM  14:08.53 /Users/me/Developer/Cellar/mongodb/1.8.0-x86_64/bin/mongod run --config /Users/atmos/Developer/Cellar/mongodb/1.8.0-x86_64/mongod.conf
+    % lunchy stop mongo
+    % ps auwwx | grep mongo
+    % lunchy start mongo
+    % ps auwwx | grep mongo
+    atmos    21060   0.2  0.0  2462220   3988   ??  R     1:12PM   0:00.34 /Users/me/Developer/Cellar/mongodb/1.8.0-x86_64/bin/mongod run --config /Users/atmos/Developer/Cellar/mongodb/1.8.0-x86_64/mongod.conf
+
 [git]: http://git-scm.com/
 [rvm]: http://rvm.beginrescueend.com
 [npm]: http://npmjs.org/
