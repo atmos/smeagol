@@ -23,7 +23,7 @@ execute "download homebrew installer" do
   not_if  "test -e ~/Developer/bin/brew"
 end
 
-script "install_something" do
+script "cleaning legacy artifacts" do
   interpreter "bash"
   code <<-EOS
   if [ -f ~/.cider.profile ]; then
@@ -56,6 +56,21 @@ execute "setup cinderella profile sourcing in ~/.profile" do
 end
 
 homebrew "git"
+
+script "ensure the git remote is installed" do
+  interpreter "bash"
+  code <<-EOS
+    source ~/.cinderella.profile
+    cd ~/Developer
+    if [ ! -d ./.git ]; then
+      git init
+      git remote add origin git://github.com/mxcl/homebrew.git
+      git fetch origin
+      git reset --hard origin/master
+    fi
+  EOS
+end
+
 script "updating homebrew from github" do
   interpreter "bash"
   code <<-EOS
