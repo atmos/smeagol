@@ -7,6 +7,10 @@
 # limitations under the License.
 #
 
+task :package do
+  system("tar czf ../ciderapp.org/cider.tgz --exclude certificates --exclude config --exclude .git --exclude roles --exclude site-cookbooks .")
+end
+
 begin
   require 'rubygems'
   require 'chef'
