@@ -9,18 +9,6 @@ require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 require 'etc'
 
-
-script "configuring ndistro" do
-  interpreter "bash"
-  code <<-EOS
-    source ~/.cinderella.profile
-    cd #{ENV['HOME']}/Developer/bin
-
-    curl -# -L http://github.com/visionmedia/ndistro/raw/master/bin/ndistro > ndistro 2> ~/.cinderella.log
-    chmod 0755 ndistro
-  EOS
-end
-
 script "configuring nvm" do
   interpreter "bash"
   code <<-EOS
