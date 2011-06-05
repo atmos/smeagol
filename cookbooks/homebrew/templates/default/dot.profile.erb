@@ -4,6 +4,7 @@ CFLAGS="-I<%= @home %>/Developer/include"; export CFLAGS
 CPPFLAGS="-I<%= @home %>/Developer/include"; export CPPFLAGS
 CXXFLAGS="-I<%= @home %>/Developer/include"; export CXXFLAGS
 LDFLAGS="-L<%= @home %>/Developer/lib"; export LDFLAGS
+HOMEBREW_TEMP="<%= @home %>/Developer/tmp"; export HOMEBREW_TEMP
 
 export CONFIGURE_ARGS="--with-cflags='$CFLAGS' --with-ldflags='$LDFLAGS'"
 
