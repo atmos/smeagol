@@ -13,6 +13,10 @@ directory "#{ENV['HOME']}/Developer" do
   action :create
 end
 
+directory "#{ENV['HOME']}/Developer/tmp" do
+  action :create
+end
+
 directory "#{ENV['HOME']}/.cinderella" do
   action :create
 end
