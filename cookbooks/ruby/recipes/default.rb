@@ -22,8 +22,8 @@ script "installing rvm to ~/Developer" do
       if [[ -d ./rvm ]]; then
         rm -rf ./rvm
       fi
-      git clone git://github.com/wayneeseguin/rvm.git >> ~/.cinderella/ruby.log
-      cd rvm && ./install >> ~/.cinderella/ruby.log
+      git clone git://github.com/wayneeseguin/rvm.git #{ENV['HOME']}/Developer/rvm >> ~/.cinderella/ruby.log
+      cd #{ENV['HOME']}/Developer/rvm && ./install >> ~/.cinderella/ruby.log
     fi
   EOS
 end

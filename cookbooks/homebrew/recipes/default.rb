@@ -85,4 +85,4 @@ script "updating homebrew from github" do
 end
 
 homebrew "nginx"
-homebrew "solr"
+# homebrew "solr"
