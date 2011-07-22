@@ -38,6 +38,7 @@ script "installed macvim from google code" do
     source ~/.cinderella.profile
     if [ ! -e ~/Developer/bin/mvim ]; then
       rm -rf /Applications/MacVim.app
+      cd $TMPDIR
       curl -L http://github.com/downloads/b4winckler/macvim/MacVim-snapshot-55.tbz -o - | tar xj -
       cd MacVim-snapshot-55
       cp mvim ~/Developer/bin
