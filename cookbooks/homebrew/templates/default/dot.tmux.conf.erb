@@ -1,0 +1,11 @@
+set -g default-terminal "xterm-256color"
+setw -g xterm-keys on
+set -g status-bg white
+set -g status-fg black
+
+bind C-d detach
+bind r source-file <%= @home %>/.tmux.conf
+
+set -g prefix C-z
+unbind C-b
+bind C-z send-prefix

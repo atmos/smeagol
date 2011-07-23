@@ -12,3 +12,12 @@ require root + '/providers/homebrew'
   homebrew pkg
 end
 
+homebrew "tmux"
+template "#{ENV['HOME']}/.tmux.conf" do
+  mode   0700
+  owner  ENV['USER']
+  group  Etc.getgrgid(Process.gid).name
+  source "dot.tmux.conf.erb"
+  variables({ :home => ENV['HOME'] })
+end
+
