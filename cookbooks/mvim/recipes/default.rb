@@ -39,9 +39,8 @@ script "installed macvim from google code" do
     if [ ! -e ~/Developer/bin/mvim ]; then
       rm -rf /Applications/MacVim.app
       cd $TMPDIR
-      curl -L http://github.com/downloads/b4winckler/macvim/MacVim-snapshot-55.tbz -o - | tar xj -
-      cd MacVim-snapshot-55
-      cp mvim ~/Developer/bin
+      curl -L http://github.com/downloads/b4winckler/macvim/MacVim-snapshot-61.tbz -o - | tar xj -
+      cd MacVim-snapshot-61
       cp -r MacVim.app /Applications/
     fi
   EOS
