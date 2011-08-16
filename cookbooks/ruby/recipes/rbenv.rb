@@ -52,17 +52,8 @@ script "ensuring a default ruby is set" do
   EOS
 end
 
-RUBYGEMS_VERSION="1.6.2"
-
-script "installing rubygems #{RUBYGEMS_VERSION}" do
-  interpreter "bash"
-  code <<-EOS
-    source ~/.cinderella.profile
-    curl http://production.cf.rubygems.org/rubygems/rubygems-#{RUBYGEMS_VERSION}.tgz -o #{Dir.tmpdir}/rubygems-#{RUBYGEMS_VERSION}.tgz
-    cd #{Dir.tmpdir} && tar zxvf rubygems-#{RUBYGEMS_VERSION}.tgz
-    cd rubygems-#{RUBYGEMS_VERSION} && ruby setup.rb
-    rbenv rehash
-  EOS
+template "#{ENV['HOME']}/.gemrc" do
+  source "dot.gemrc.erb"
 end
 
 script "installing basic gems" do
@@ -73,30 +64,6 @@ script "installing basic gems" do
     gem install rake -v=0.8.7
     rbenv rehash
   EOS
-end
-
-# directory "#{ENV['HOME']}/Developer/.rvm/gemsets" do
-#   action 'create'
-# end
-
-# template "#{ENV['HOME']}/Developer/.rvm/gemsets/default.gems" do
-#   source "default.gems.erb"
-# end
-
-# script "ensuring default rubygems are installed" do
-#   interpreter "bash"
-#   code <<-EOS
-#     source ~/.cinderella.profile
-#     rvm gemset load ~/Developer/.rvm/gemsets/default.gems >> ~/.cinderella/ruby.log 2>&1
-#   EOS
-# end
-
-# execute "cleanup rvm build artifacts" do
-#   command "find ~/Developer/.rvm/src -depth 1 | grep -v src/rvm | xargs rm -rf "
-# end
-
-template "#{ENV['HOME']}/.gemrc" do
-  source "dot.gemrc.erb"
 end
 
 template "#{ENV['HOME']}/.rdebugrc" do
