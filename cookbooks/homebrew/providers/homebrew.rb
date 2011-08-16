@@ -67,7 +67,7 @@ class Chef
             end
           when "mysql"
             unless ::File.directory?("#{PREFIX}/var/mysql/mysql")
-              prefix = `brew --prefix mysql`.chomp
+              prefix = `#{PREFIX}/bin/brew --prefix mysql`.chomp
               system("unset TMPDIR; #{PREFIX}/bin/mysql_install_db --user=#{ENV['USER']} --basedir=#{prefix} --datadir=#{PREFIX}/var/mysql --tmpdir=/tmp > /dev/null")
             end
           else

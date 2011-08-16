@@ -56,9 +56,8 @@ script "installing basic gems" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    gem install bundler
+    gem install bundler heroku cinderella
     gem install rake -v=0.8.7
-    gem install heroku
     rbenv rehash
   EOS
 end
