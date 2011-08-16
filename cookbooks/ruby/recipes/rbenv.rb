@@ -52,22 +52,13 @@ script "ensuring a default ruby is set" do
   EOS
 end
 
-template "#{ENV['HOME']}/.gemrc" do
-  source "dot.gemrc.erb"
-end
-
 script "installing basic gems" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
     gem install bundler
     gem install rake -v=0.8.7
+    gem install heroku
     rbenv rehash
   EOS
 end
-
-template "#{ENV['HOME']}/.rdebugrc" do
-    source "dot.rdebugrc.erb"
-end
-
-homebrew "rpg"
