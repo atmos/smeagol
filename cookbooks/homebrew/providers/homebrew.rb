@@ -66,7 +66,7 @@ class Chef
               system("#{PREFIX}/bin/initdb #{PREFIX}/var/postgres > /dev/null 2>&1")
             end
           when "mysql"
-            unless ::File.directory?("#{PREFIX}/var/mysql")
+            unless ::File.directory?("#{PREFIX}/var/mysql/mysql")
               prefix = `brew --prefix mysql`.chomp
               system("unset TMPDIR; #{PREFIX}/bin/mysql_install_db --user=#{ENV['USER']} --basedir=#{prefix} --datadir=#{PREFIX}/var/mysql --tmpdir=/tmp > /dev/null")
             end
