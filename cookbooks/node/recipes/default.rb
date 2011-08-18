@@ -4,7 +4,7 @@
 #
 #
 #
-DEFAULT_NODE_VERSION = "v0.4.10"
+DEFAULT_NODE_VERSION = "v0.4.11"
 
 root = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "homebrew"))
 
