@@ -7,6 +7,9 @@
 # limitations under the License.
 #
 
+# Smeagol defaults to latest homebrew by default
+ENV['CINDERELLA_RELEASE'] ||= 'origin/master'
+
 task :package do
   system("tar czf ../ciderapp.org/cider.tgz --exclude certificates --exclude config --exclude .git --exclude roles --exclude site-cookbooks .")
 end

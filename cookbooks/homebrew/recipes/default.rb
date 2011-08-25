@@ -80,7 +80,7 @@ script "updating homebrew from github" do
   code <<-EOS
     source ~/.cinderella.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    ~/Developer/bin/brew update >> ~/.cinderella/brew.log 2>&1
+    (cd ~/Developer && git fetch origin && git reset --hard #{ENV['CINDERELLA_RELEASE'] || 'origin/master'}) >> ~/.cinderella/brew.log 2>&1
   EOS
 end
 
