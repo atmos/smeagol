@@ -3,6 +3,8 @@
 # Recipe:: homebrew
 #
 
+HOMEBREW_DEFAULT_SHA1 = '97b62b8b3f1c8973cf8a2575bfc98706ccbbde39'
+
 root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 require root + '/resources/homebrew'
@@ -80,7 +82,7 @@ script "updating homebrew from github" do
   code <<-EOS
     source ~/.cinderella.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    (cd ~/Developer && git fetch origin && git reset --hard #{ENV['CINDERELLA_RELEASE'] || 'origin/master'}) >> ~/.cinderella/brew.log 2>&1
+    (cd ~/Developer && git fetch origin && git reset --hard #{ENV['CINDERELLA_RELEASE'] || HOMEBREW_DEFAULT_SHA1}) >> ~/.cinderella/brew.log 2>&1
   EOS
 end
 
