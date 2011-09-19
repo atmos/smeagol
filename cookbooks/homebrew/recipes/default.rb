@@ -3,7 +3,7 @@
 # Recipe:: homebrew
 #
 
-HOMEBREW_DEFAULT_SHA1 = '97b62b8b3f1c8973cf8a2575bfc98706ccbbde39'
+HOMEBREW_DEFAULT_SHA1 = '05209f7c75f693edf23d992b5a00409520d36de2'
 
 root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
@@ -71,7 +71,7 @@ script "ensure the git remote is installed" do
     if [ ! -d ./.git ]; then
       git init
       git remote add origin git://github.com/mxcl/homebrew.git
-      git fetch origin
+      git fetch -q origin
       git reset --hard origin/master
     fi
   EOS
@@ -82,7 +82,7 @@ script "updating homebrew from github" do
   code <<-EOS
     source ~/.cinderella.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    (cd ~/Developer && git fetch origin && git reset --hard #{ENV['CINDERELLA_RELEASE'] || HOMEBREW_DEFAULT_SHA1}) >> ~/.cinderella/brew.log 2>&1
+    (cd ~/Developer && git fetch -q origin && git reset --hard #{ENV['CINDERELLA_RELEASE'] || HOMEBREW_DEFAULT_SHA1}) >> ~/.cinderella/brew.log 2>&1
   EOS
 end
 

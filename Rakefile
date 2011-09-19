@@ -10,6 +10,7 @@
 # Smeagol defaults to latest homebrew by default
 ENV['CINDERELLA_RELEASE'] ||= 'origin/master'
 
+desc "Package up a set of chef recipes for the cinderella client"
 task :package do
   system("tar czf ../ciderapp.org/cider.tgz --exclude certificates --exclude config --exclude .git --exclude roles --exclude site-cookbooks .")
 end
@@ -62,6 +63,7 @@ begin
   end
 
   namespace :smeagol do
+    desc "Run the smeagol chef recipes with the run_list.json in config/"
     task :install do |t, args|
       system("chef-solo -j config/run_list.json -c config/solo.rb")
     end

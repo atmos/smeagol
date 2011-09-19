@@ -20,7 +20,7 @@ class Chef
         end
 
         def install_package(name, version)
-          run_brew_command("/usr/bin/env HOMEBREW_TEMP=#{PREFIX}/tmp #{HOMEBREW} install #{name}")
+          run_brew_command("if [ brew info #{name} | grep -q \"Not installed\" -eq 0 ]; then /usr/bin/env HOMEBREW_TEMP=#{PREFIX}/tmp #{HOMEBREW} install #{name}; fi")
         end
 
         def remove_package(name, version)
