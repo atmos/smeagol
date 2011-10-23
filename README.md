@@ -11,7 +11,7 @@ What it does
 * Sets you up with [homebrew]
 * Installs [git] from homebrew, sets up ~/.gitconfig
 * Installs [postgresql], [mysql], [redis], [memcached] and [mongodb].  They're all configured to run when you login.
-* Installs [rvm] and sets up 1.8.7 to be the default, self manages on 1.9.2 as well
+* Installs [rbenv] and sets up 1.8.7 to be the default, self manages on 1.9.2 as well
 * Installs common ruby gems: rails 3, sinatra, fog, sqlite3, imagemagick, and all that bullshit
 * Installs a pretty sane ~/.irbrc
 * Installs a [node.js] development environment with [npm]
@@ -46,7 +46,7 @@ enable/disable the services that are installed by default.
     me    21060   0.2  0.0  2462220   3988   ??  R     1:12PM   0:00.34 /Users/me/Developer/Cellar/mongodb/1.8.0-x86_64/bin/mongod run --config /Users/me/Developer/Cellar/mongodb/1.8.0-x86_64/mongod.conf
 
 [git]: http://git-scm.com/
-[rvm]: http://rvm.beginrescueend.com
+[rbenv]: https://github.com/sstephenson/rbenv
 [npm]: http://npmjs.org/
 [pip]: http://pypi.python.org/pypi/pip
 [mysql]: http://www.mysql.com/
