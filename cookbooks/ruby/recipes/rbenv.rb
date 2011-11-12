@@ -47,7 +47,7 @@ script "ensuring a default ruby is set" do
       rm -rf ~/.rbenv/versions
       ln -s ~/Developer/.rbenv/versions ~/.rbenv/versions
       rbenv rehash
-      rbenv set-default #{DEFAULT_RUBY_VERSION}
+      rbenv global #{DEFAULT_RUBY_VERSION}
     fi
   EOS
 end
