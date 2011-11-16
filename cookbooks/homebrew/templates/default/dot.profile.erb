@@ -1,27 +1,27 @@
-PATH="<%= @home %>/Developer/bin:<%= @home %>/Developer/Cellar/python/2.7.1/bin:<%= @home %>/Developer/share/python:<%= @home %>/Developer/sbin:$PATH"; export PATH
-PATH="<%= @home %>/Developer/.rbenv/bin:$PATH"; export PATH
-MANPATH="<%= @home %>/Developer/share/man:$MANPATH"; export MANPATH
-CFLAGS="-I<%= @home %>/Developer/include"; export CFLAGS
-CPPFLAGS="-I<%= @home %>/Developer/include"; export CPPFLAGS
-CXXFLAGS="-I<%= @home %>/Developer/include"; export CXXFLAGS
-LDFLAGS="-L<%= @home %>/Developer/lib"; export LDFLAGS
-HOMEBREW_TEMP="<%= @home %>/Developer/tmp"; export HOMEBREW_TEMP
+PATH="<%= @root %>/bin:<%= @root %>/Cellar/python/2.7.1/bin:<%= @root %>/share/python:<%= @root %>/sbin:$PATH"; export PATH
+PATH="<%= @root %>/.rbenv/bin:$PATH"; export PATH
+MANPATH="<%= @root %>/share/man:$MANPATH"; export MANPATH
+CFLAGS="-I<%= @root %>/include"; export CFLAGS
+CPPFLAGS="-I<%= @root %>/include"; export CPPFLAGS
+CXXFLAGS="-I<%= @root %>/include"; export CXXFLAGS
+LDFLAGS="-L<%= @root %>/lib"; export LDFLAGS
+HOMEBREW_TEMP="<%= @root %>/tmp"; export HOMEBREW_TEMP
 
 export CONFIGURE_ARGS="--with-cflags='$CFLAGS' --with-ldflags='$LDFLAGS'"
 
-if [[ -s <%= @home %>/Developer/.rvm/scripts/rvm ]] ; then
-  source <%= @home %>/Developer/.rvm/scripts/rvm
+if [[ -s <%= @root %>/.rvm/scripts/rvm ]] ; then
+  source <%= @root %>/.rvm/scripts/rvm
 fi
 
-if [[ -d <%= @home %>/Developer/Cellar/python/2.7/bin ]]; then
+if [[ -d <%= @root %>/Cellar/python/2.7/bin ]]; then
   export PATH=~/Developer/Cellar/python/2.7/bin:$PATH
 fi
 
-if [[ -f <%= @home %>/Developer/.nvm/nvm.sh ]]; then
-  source <%= @home %>/Developer/.nvm/nvm.sh
+if [[ -f <%= @root %>/.nvm/nvm.sh ]]; then
+  source <%= @root %>/.nvm/nvm.sh
 fi
 
-if [[ -x <%= @home %>/Developer/.rbenv/bin/rbenv ]]; then
+if [[ -x <%= @root %>/.rbenv/bin/rbenv ]]; then
   eval "$(rbenv init -)"
 fi
 

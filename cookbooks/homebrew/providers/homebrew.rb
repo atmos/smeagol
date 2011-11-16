@@ -5,7 +5,7 @@ class Chef
   class Provider
     class Package
       class Homebrew < ::Chef::Provider::Package
-        PREFIX   = "#{ENV['HOME']}/Developer"
+        PREFIX   = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
         HOMEBREW = "#{PREFIX}/bin/brew"
 
         def latest_version_for(name)

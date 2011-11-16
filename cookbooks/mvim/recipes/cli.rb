@@ -3,7 +3,9 @@
 # Recipe:: cli
 #
 
-template "#{ENV['HOME']}/Developer/bin/mvim" do
+SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
+
+template "#{SMEAGOL_ROOT_DIR}/bin/mvim" do
   mode "0555"
   source "mvim"
 end

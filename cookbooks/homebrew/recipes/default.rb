@@ -7,15 +7,17 @@ HOMEBREW_DEFAULT_SHA1 = '05209f7c75f693edf23d992b5a00409520d36de2'
 
 root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
+SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
+
 require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 require 'etc'
 
-directory "#{ENV['HOME']}/Developer" do
+directory SMEAGOL_ROOT_DIR do
   action :create
 end
 
-directory "#{ENV['HOME']}/Developer/tmp" do
+directory "#{SMEAGOL_ROOT_DIR}/tmp" do
   action :create
 end
 
@@ -25,8 +27,8 @@ end
 
 execute "download homebrew installer" do
   command "/usr/bin/curl -sfL http://github.com/mxcl/homebrew/tarball/master | /usr/bin/tar xz -m --strip 1"
-  cwd     "#{ENV['HOME']}/Developer"
-  not_if  "test -e ~/Developer/bin/brew"
+  cwd     "#{SMEAGOL_ROOT_DIR}"
+  not_if  "test -e #{SMEAGOL_ROOT_DIR}/bin/brew"
 end
 
 script "cleaning legacy artifacts" do
@@ -46,7 +48,7 @@ template "#{ENV['HOME']}/.cinderella.profile" do
   owner  ENV['USER']
   group  Etc.getgrgid(Process.gid).name
   source "dot.profile.erb"
-  variables({ :home => ENV['HOME'] })
+  variables({ :home => ENV['HOME'], :root => SMEAGOL_ROOT_DIR })
 end
 
 %w(bash_profile bashrc zshrc).each do |config_file|
@@ -67,7 +69,7 @@ script "ensure the git remote is installed" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    cd ~/Developer
+    cd #{SMEAGOL_ROOT_DIR}
     if [ ! -d ./.git ]; then
       git init
       git remote add origin git://github.com/mxcl/homebrew.git
@@ -82,7 +84,7 @@ script "updating homebrew from github" do
   code <<-EOS
     source ~/.cinderella.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
-    (cd ~/Developer && git fetch -q origin && git reset --hard #{ENV['CINDERELLA_RELEASE'] || HOMEBREW_DEFAULT_SHA1}) >> ~/.cinderella/brew.log 2>&1
+    (cd #{SMEAGOL_ROOT_DIR} && git fetch -q origin && git reset --hard #{ENV['CINDERELLA_RELEASE'] || HOMEBREW_DEFAULT_SHA1}) >> ~/.cinderella/brew.log 2>&1
   EOS
 end
 
