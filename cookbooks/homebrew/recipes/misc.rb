@@ -8,7 +8,7 @@ root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 
-%w(tig ack coreutils imagemagick sqlite wget fortune proctools markdown ctags-exuberant gpgme icu4c).each do |pkg|
+%w(tig ack coreutils imagemagick sqlite wget fortune proctools markdown ctags-exuberant gpgme icu4c wget).each do |pkg|
   homebrew pkg
 end
 
