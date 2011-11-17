@@ -5,6 +5,8 @@
 # Copyright 2010, atmos.org
 #
 
+SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
+
 # homebrew "erlang"
 
 script "installing erlang" do
