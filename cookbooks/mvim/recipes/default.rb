@@ -3,10 +3,12 @@
 # Recipe:: default
 #
 
+SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
+
 script "installing http://github.com/carlhuda/janus" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cinderella.profile
+    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
     if [ ! -d ~/.vim ]; then
       git clone git://github.com/carlhuda/janus.git ~/.vim
       cd ~/.vim
@@ -35,8 +37,8 @@ end
 script "installed macvim from google code" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cinderella.profile
-    if [ ! -e ~/Developer/bin/mvim ]; then
+    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
+    if [ ! -e #{SMEAGOL_ROOT_DIR}/bin/mvim ]; then
       rm -rf /Applications/MacVim.app
       cd $TMPDIR
       curl -L http://github.com/downloads/b4winckler/macvim/MacVim-snapshot-61.tbz -o - | tar xj -

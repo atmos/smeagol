@@ -24,7 +24,7 @@ end
 script "configuring nvm and node #{DEFAULT_NODE_VERSION}" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cinderella.profile
+    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
     cd #{SMEAGOL_ROOT_DIR}
     if [ ! -d ./.nvm ]; then
       git clone git://github.com/creationix/nvm.git .nvm >> ~/.cinderella/node.log

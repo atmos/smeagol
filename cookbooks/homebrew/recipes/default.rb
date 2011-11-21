@@ -43,7 +43,7 @@ script "cleaning legacy artifacts" do
   EOS
 end
 
-template "#{ENV['HOME']}/.cinderella.profile" do
+template "#{SMEAGOL_ROOT_DIR}/cinderella.profile" do
   mode   0700
   owner  ENV['USER']
   group  Etc.getgrgid(Process.gid).name
@@ -53,13 +53,13 @@ end
 
 %w(bash_profile bashrc zshrc).each do |config_file|
   execute "include cinderella environment into defaults for ~/.#{config_file}" do
-    command "if [ -f ~/.#{config_file} ]; then echo 'source ~/.cinderella.profile' >> ~/.#{config_file}; fi"
+    command "if [ -f ~/.#{config_file} ]; then echo 'source #{SMEAGOL_ROOT_DIR}/cinderella.profile' >> ~/.#{config_file}; fi"
     not_if  "grep -q 'cinderella.profile' ~/.#{config_file}"
   end
 end
 
 execute "setup cinderella profile sourcing in ~/.profile" do
-  command "echo 'source ~/.cinderella.profile' >> ~/.profile"
+  command "echo 'source #{SMEAGOL_ROOT_DIR}/cinderella.profile' >> ~/.profile"
   not_if  "grep -q 'cinderella.profile' ~/.profile"
 end
 
@@ -68,7 +68,7 @@ homebrew "git"
 script "ensure the git remote is installed" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cinderella.profile
+    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
     cd #{SMEAGOL_ROOT_DIR}
     if [ ! -d ./.git ]; then
       git init
@@ -82,7 +82,7 @@ end
 script "updating homebrew from github" do
   interpreter "bash"
   code <<-EOS
-    source ~/.cinderella.profile
+    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
     PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
     (cd #{SMEAGOL_ROOT_DIR} && git fetch -q origin && git reset --hard #{ENV['CINDERELLA_RELEASE'] || HOMEBREW_DEFAULT_SHA1}) >> ~/.cinderella/brew.log 2>&1
   EOS
