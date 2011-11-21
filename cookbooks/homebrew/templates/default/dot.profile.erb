@@ -6,6 +6,7 @@ CPPFLAGS="-I<%= @root %>/include"; export CPPFLAGS
 CXXFLAGS="-I<%= @root %>/include"; export CXXFLAGS
 LDFLAGS="-L<%= @root %>/lib"; export LDFLAGS
 HOMEBREW_TEMP="<%= @root %>/tmp"; export HOMEBREW_TEMP
+RBENV_ROOT="<%= @root %>/.rbenv"; export RBENV_ROOT
 
 export CONFIGURE_ARGS="--with-cflags='$CFLAGS' --with-ldflags='$LDFLAGS'"
 

@@ -11,7 +11,7 @@ script "installing rbenv to #{SMEAGOL_ROOT_DIR}" do
   code <<-EOS
     source ~/.cinderella.profile
     if [[ ! -d #{SMEAGOL_ROOT_DIR}/.rbenv ]]; then
-      git clone git://github.com/sstephenson/rbenv.git ~/Developer/.rbenv
+      git clone git://github.com/sstephenson/rbenv.git #{SMEAGOL_ROOT_DIR}/.rbenv
     fi
   EOS
 end
@@ -22,7 +22,7 @@ script "installing ruby-build to #{SMEAGOL_ROOT_DIR}" do
     source ~/.cinderella.profile
     if [[ ! -x #{SMEAGOL_ROOT_DIR}/bin/ruby-build ]]; then
       git clone git://github.com/sstephenson/ruby-build.git #{Dir.tmpdir}/ruby-build >> ~/.cinderella/ruby.log
-      cd #{Dir.tmpdir}/ruby-build && /usr/bin/env PREFIX=~/Developer ./install.sh >> ~/.cinderella/ruby.log
+      cd #{Dir.tmpdir}/ruby-build && /usr/bin/env PREFIX=#{SMEAGOL_ROOT_DIR} ./install.sh >> ~/.cinderella/ruby.log
     fi
   EOS
 end
@@ -32,7 +32,7 @@ script "installing ruby-#{DEFAULT_RUBY_VERSION} to #{SMEAGOL_ROOT_DIR}/.rbenv" d
   code <<-EOS
     source ~/.cinderella.profile
 
-    if [ ! -d ~/Developer/.rbenv/versions/#{DEFAULT_RUBY_VERSION} ]; then
+    if [ ! -d #{SMEAGOL_ROOT_DIR}/.rbenv/versions/#{DEFAULT_RUBY_VERSION} ]; then
       ruby-build #{DEFAULT_RUBY_VERSION} #{SMEAGOL_ROOT_DIR}/.rbenv/versions/#{DEFAULT_RUBY_VERSION}
     fi
   EOS
@@ -45,8 +45,6 @@ script "ensuring a default ruby is set" do
     `which ruby | grep -q rbenv`
     if [ $? -ne 0 ]; then
       rbenv init
-      rm -rf ~/.rbenv/versions
-      ln -s #{SMEAGOL_ROOT_DIR}/.rbenv/versions ~/.rbenv/versions
       rbenv rehash
       rbenv global #{DEFAULT_RUBY_VERSION}
     fi
