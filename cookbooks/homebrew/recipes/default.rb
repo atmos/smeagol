@@ -25,6 +25,10 @@ directory "#{ENV['HOME']}/.cinderella" do
   action :create
 end
 
+directory "#{ENV['HOME']}/Library/Caches/Homebrew" do
+  action :create
+end
+
 execute "download homebrew installer" do
   command "/usr/bin/curl -sfL http://github.com/mxcl/homebrew/tarball/master | /usr/bin/tar xz -m --strip 1"
   cwd     "#{SMEAGOL_ROOT_DIR}"
