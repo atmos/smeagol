@@ -44,6 +44,11 @@ class Chef
             "postgresql" => "org.postgresql.postgres.plist" }[name]
         end
 
+        def latest_version_for(name)
+          path = %x{#{HOMEBREW} info #{name}| grep files | head -n1 | awk '{print $1}'}.chomp
+          path.split('/').last
+        end
+
         def plist_fullpath_for(name)
           "#{PREFIX}/Cellar/#{name}/#{latest_version_for(name)}/#{plist_for(name)}"
         end
