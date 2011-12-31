@@ -9,7 +9,7 @@ class Chef
         HOMEBREW = "#{PREFIX}/bin/brew"
 
         def latest_version_for(name)
-          %x{#{HOMEBREW} info #{name}| grep files | head -n1 | awk '{print $1}'}.chomp
+          %x{#{HOMEBREW} info #{name}| grep #{name} | head -n1 | awk '{print $2}'}.chomp
         end
 
         def load_current_resource
@@ -45,7 +45,7 @@ class Chef
         end
 
         def latest_version_for(name)
-          path = %x{#{HOMEBREW} info #{name}| grep files | head -n1 | awk '{print $1}'}.chomp
+          path = %x{#{HOMEBREW} info #{name}| grep #{name} | head -n1 | awk '{print $2}'}.chomp
           path.split('/').last
         end
 
