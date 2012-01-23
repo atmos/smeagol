@@ -4,7 +4,7 @@
 #
 #
 #
-DEFAULT_NODE_VERSION = "v0.6.1"
+DEFAULT_NODE_VERSION = "v0.6.8"
 SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
 
 root = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "homebrew"))
