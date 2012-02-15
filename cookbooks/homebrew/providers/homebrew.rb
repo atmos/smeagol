@@ -42,7 +42,7 @@ class Chef
             "mongodb"       => "org.mongodb.mongod.plist",
             "memcached"     => "com.danga.memcached.plist",
             "postgresql"    => "org.postgresql.postgres.plist",
-            "elasticsearch" => "org.elasticsearch.plist" }[name]
+            "elasticsearch" => "homebrew.mxcl.elasticsearch.plist" }[name]
         end
 
         def latest_version_for(name)
