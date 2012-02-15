@@ -37,15 +37,19 @@ class Chef
 
       class HomebrewDb < Homebrew
         def plist_for(name)
-          { "mysql"      => "com.mysql.mysqld.plist",
-            "redis"      => "io.redis.redis-server.plist",
-            "mongodb"    => "org.mongodb.mongod.plist",
-            "memcached"  => "com.danga.memcached.plist",
-            "postgresql" => "org.postgresql.postgres.plist" }[name]
+          { "mysql"         => "com.mysql.mysqld.plist",
+            "redis"         => "io.redis.redis-server.plist",
+            "mongodb"       => "org.mongodb.mongod.plist",
+            "memcached"     => "com.danga.memcached.plist",
+            "postgresql"    => "org.postgresql.postgres.plist",
+            "elasticsearch" => "org.elasticsearch.plist" }[name]
         end
 
         def latest_version_for(name)
           path = %x{#{HOMEBREW} info #{name}| grep files | head -n1 | awk '{print $1}'}.chomp
+          if path.empty?
+            path = %x{#{HOMEBREW} info #{name}| grep #{name} | head -n1 | awk '{print $2}'}.chomp
+          end
           path.split('/').last
         end
 
