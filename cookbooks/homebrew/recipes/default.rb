@@ -87,11 +87,18 @@ script "updating homebrew from github" do
   interpreter "bash"
   code <<-EOS
     source #{SMEAGOL_ROOT_DIR}/cinderella.profile
-    PATH=#{ENV['HOME']}/Developer/bin:$PATH; export PATH
     (cd #{SMEAGOL_ROOT_DIR} && git fetch -q origin && git reset --hard #{ENV['CINDERELLA_RELEASE'] || HOMEBREW_DEFAULT_SHA1}) >> ~/.cinderella/brew.log 2>&1
   EOS
 end
 
 homebrew "nginx"
 homebrew "bash-completion"
+
+script "installing a non-busted versino of gcc, fuck everything about this" do
+  interpreter "bash"
+  code <<-EOS
+    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
+    brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/apple-gcc42.rb
+  EOS
+end
 # homebrew "solr"
