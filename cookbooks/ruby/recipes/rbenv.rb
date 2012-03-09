@@ -9,6 +9,7 @@ require root + "/providers/homebrew"
 
 SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
 DEFAULT_RUBY_VERSION = "1.8.7-p352"
+DEFAULT_RUBY_19_VERSION = "1.9.3-p125"
 
 script "installing rbenv to #{SMEAGOL_ROOT_DIR}" do
   interpreter "bash"
@@ -42,13 +43,13 @@ script "installing ruby-#{DEFAULT_RUBY_VERSION} to #{SMEAGOL_ROOT_DIR}/.rbenv" d
   EOS
 end
 
-script "installing ruby-1.9 to #{SMEAGOL_ROOT_DIR}/.rbenv" do
+script "installing ruby-#{DEFAULT_RUBY_19_VERSION} to #{SMEAGOL_ROOT_DIR}/.rbenv" do
   interpreter "bash"
   code <<-EOS
     source #{SMEAGOL_ROOT_DIR}/cinderella.profile
 
-    if [ ! -d #{SMEAGOL_ROOT_DIR}/.rbenv/versions/#{DEFAULT_RUBY_VERSION} ]; then
-      ruby-build 1.9.3-p125 #{DEFAULT_RUBY_VERSION} #{SMEAGOL_ROOT_DIR}/.rbenv/versions/1.9.3-p125
+    if [ ! -d #{SMEAGOL_ROOT_DIR}/.rbenv/versions/#{DEFAULT_RUBY_19_VERSION} ]; then
+      ruby-build #{DEFAULT_RUBY_19_VERSION} #{SMEAGOL_ROOT_DIR}/.rbenv/versions/#{DEFAULT_RUBY_19_VERSION}
     fi
   EOS
 end
