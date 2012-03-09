@@ -67,12 +67,15 @@ script "ensuring a default ruby is set" do
   EOS
 end
 
-script "installing basic gems" do
-  interpreter "bash"
-  code <<-EOS
-    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
-    gem install bundler heroku cinderella
-    gem install rake -v=0.8.7
-    rbenv rehash
-  EOS
+[ DEFAULT_RUBY_VERSION, DEFAULT_RUBY_19_VERSION ].each do |ver|
+  script "installing basic gems" do
+    interpreter "bash"
+    code <<-EOS
+      source #{SMEAGOL_ROOT_DIR}/cinderella.profile
+      rbenv local #{ver}
+      gem install bundler heroku cinderella
+      gem install rake -v=0.8.7
+      rbenv rehash
+    EOS
+  end
 end
