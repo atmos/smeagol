@@ -10,8 +10,26 @@ require root + "/providers/homebrew"
 SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
 DEFAULT_RUBY_VERSION = "1.8.7-p352"
 
-homebrew "rbenv"
-homebrew "ruby-build"
+script "installing rbenv to #{SMEAGOL_ROOT_DIR}" do
+  interpreter "bash"
+  code <<-EOS
+    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
+    if [[ ! -d #{SMEAGOL_ROOT_DIR}/.rbenv ]]; then
+      git clone git://github.com/sstephenson/rbenv.git #{SMEAGOL_ROOT_DIR}/.rbenv
+    fi
+  EOS
+end
+
+script "installing ruby-build to #{SMEAGOL_ROOT_DIR}" do
+  interpreter "bash"
+  code <<-EOS
+    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
+    if [[ ! -x #{SMEAGOL_ROOT_DIR}/bin/ruby-build ]]; then
+      git clone git://github.com/sstephenson/ruby-build.git #{Dir.tmpdir}/ruby-build >> ~/.cinderella/ruby.log
+      cd #{Dir.tmpdir}/ruby-build && /usr/bin/env PREFIX=#{SMEAGOL_ROOT_DIR} ./install.sh >> ~/.cinderella/ruby.log
+    fi
+  EOS
+end
 
 script "installing ruby-#{DEFAULT_RUBY_VERSION} to #{SMEAGOL_ROOT_DIR}/.rbenv" do
   interpreter "bash"
