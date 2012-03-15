@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/themes/hacker/stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/themes/hacker/stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/themes/hacker/stylesheets/print.css" media="print" />
+
+    <title>Smeagol by atmos</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Smeagol</h1>
+        <h2>guiding you through setting up an osx machine for open source ruby work</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/atmos/smeagol/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/atmos/smeagol/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/atmos/smeagol/tarball/master" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h3>Welcome to Smeagol.</h3>
+
+<p>This is a set of chef recipes to help bootstrap a new mac os X system.  This project is frustrating to maintain because apple doesn't give a flying fuck about non-xcode users.  I try to maintain it.  Some people like it.</p>
+
+<p>If you're an open source hacker like me, it should have all the shit you need.</p>
+
+<h3>What it does</h3>
+
+<ul>
+<li>Sets you up with [homebrew]</li>
+<li>Installs [git] from homebrew, sets up ~/.gitconfig</li>
+<li>Installs [postgresql], [mysql], [redis], [memcached] and [mongodb].  They're all configured to run when you login.</li>
+<li>Installs [rbenv] and sets up 1.8.7 to be the default, self manages on 1.9.2 as well</li>
+<li>Installs common ruby gems: rails 3, sinatra, fog, sqlite3, imagemagick, and all that bullshit</li>
+<li>Installs a pretty sane ~/.irbrc</li>
+<li>Installs a [node.js] development environment with [npm]</li>
+<li>Installs a modern [python] environment with [pip]</li>
+<li>Installs an [erlang] environment</li>
+<li>Installs [MacVim] and sets up [janus]</li>
+</ul><h3>Know an Setup Instruction</h3>
+
+<pre><code>EDITOR="vim" \
+  GITHUB_USER="fightclub" \
+  GITHUB_TOKEN="..." \
+  EMAIL="tyler@paperstreetsoap.com" \
+  FULLNAME="Tyler Durden" \
+  rake smeagol:install
+</code></pre>
+
+<h3>Support or Contact</h3>
+
+<p>Open <a href="https://github.com/atmos/smeagol/issues/new">an issue</a></p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
