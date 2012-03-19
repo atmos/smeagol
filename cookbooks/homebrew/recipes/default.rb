@@ -98,7 +98,7 @@ script "installing a non-busted versino of gcc, fuck everything about this" do
   interpreter "bash"
   code <<-EOS
     source #{SMEAGOL_ROOT_DIR}/cinderella.profile
-    brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/apple-gcc42.rb
+    brew install https://raw.github.com/Homebrew/homebrew-dupes/master/apple-gcc42.rb
   EOS
 end
 # homebrew "solr"
