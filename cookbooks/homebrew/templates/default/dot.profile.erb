@@ -9,6 +9,10 @@ LDFLAGS="-L$SMEAGOL_ROOT_DIR/lib"; export LDFLAGS
 HOMEBREW_TEMP="$SMEAGOL_ROOT_DIR/tmp"; export HOMEBREW_TEMP
 RBENV_ROOT="$SMEAGOL_ROOT_DIR/.rbenv"; export RBENV_ROOT
 
+if [[ -s "$SMEAGOL_ROOT_DIR/bin/gcc-4.2" ]] ; then
+  export CC="$SMEAGOL_ROOT_DIR/bin/gcc-4.2"
+fi
+
 export CONFIGURE_ARGS="--with-cflags='$CFLAGS' --with-ldflags='$LDFLAGS'"
 
 if [[ -s $SMEAGOL_ROOT_DIR/.rvm/scripts/rvm ]] ; then
