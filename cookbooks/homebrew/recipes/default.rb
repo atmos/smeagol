@@ -3,7 +3,7 @@
 # Recipe:: homebrew
 #
 
-HOMEBREW_DEFAULT_SHA1 = 'a663e9c5f55adea167e9cacec4000c62035aec60'
+HOMEBREW_DEFAULT_SHA1 = '8560672847891fa0c52f69f65b109673430556c8'
 
 root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
