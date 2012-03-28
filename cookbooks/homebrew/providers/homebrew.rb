@@ -37,12 +37,7 @@ class Chef
 
       class HomebrewDb < Homebrew
         def plist_for(name)
-          { "mysql"         => "com.mysql.mysqld.plist",
-            "redis"         => "io.redis.redis-server.plist",
-            "mongodb"       => "org.mongodb.mongod.plist",
-            "memcached"     => "com.danga.memcached.plist",
-            "postgresql"    => "org.postgresql.postgres.plist",
-            "elasticsearch" => "homebrew.mxcl.elasticsearch.plist" }[name]
+          "homebrew.mxcl.#{name}.plist"
         end
 
         def latest_version_for(name)
