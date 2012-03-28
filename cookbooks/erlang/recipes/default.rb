@@ -7,7 +7,9 @@
 
 SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
 
-# homebrew "erlang"
+root = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "homebrew"))
+require root + '/resources/homebrew'
+require root + '/providers/homebrew'
 
 script "installing erlang" do
   interpreter "bash"
@@ -18,3 +20,5 @@ script "installing erlang" do
     fi
   EOS
 end
+
+homebrew "riak"
