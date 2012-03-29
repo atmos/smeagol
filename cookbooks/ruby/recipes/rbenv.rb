@@ -54,10 +54,11 @@ end
     interpreter "bash"
     code <<-EOS
       source #{SMEAGOL_ROOT_DIR}/cinderella.profile
-      rbenv local #{ver}
+      rbenv shell #{ver}
       gem install bundler heroku cinderella lunchy
       gem install rake -v=0.8.7
       rbenv rehash
+      echo "Complete"
     EOS
   end
 end
