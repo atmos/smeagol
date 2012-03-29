@@ -55,7 +55,7 @@ end
     code <<-EOS
       source #{SMEAGOL_ROOT_DIR}/cinderella.profile
       rbenv local #{ver}
-      gem install bundler heroku cinderella
+      gem install bundler heroku cinderella lunchy
       gem install rake -v=0.8.7
       rbenv rehash
     EOS
