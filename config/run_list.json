@@ -1,7 +1,7 @@
 {
   "recipes": [
      "homebrew", "homebrew::misc", "git",
-     "mvim", "mvim::cli", "homebrew::dbs",
+     "mvim::cli", "homebrew::dbs",
      "ruby", "ruby::rbenv", "python", "erlang", "node"
   ]
 }
