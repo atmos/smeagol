@@ -44,7 +44,7 @@ script "ensuring a default ruby is set" do
     if [ $? -ne 0 ]; then
       rbenv init
       rbenv rehash
-      rbenv global #{DEFAULT_RUBY_VERSION}
+      rbenv global #{DEFAULT_RUBY_19_VERSION}
     fi
   EOS
 end
