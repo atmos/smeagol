@@ -94,7 +94,7 @@ end
 homebrew "nginx"
 homebrew "bash-completion"
 
-script "installing a non-busted versino of gcc, fuck everything about this" do
+script "installing a non-busted version of gcc, fuck everything about this" do
   interpreter "bash"
   code <<-EOS
     source #{SMEAGOL_ROOT_DIR}/cinderella.profile
