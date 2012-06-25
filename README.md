@@ -62,3 +62,4 @@ enable/disable the services that are installed by default.
 [memcached]: http://memcached.org/
 [cinderella]: http://ciderapp.org
 [postgresql]: http://www.postgresql.org/
+[github]: https://github.com
