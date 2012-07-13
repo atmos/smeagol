@@ -12,6 +12,13 @@ homebrew_db "redis"
 homebrew_db "mysql"
 homebrew_db "mongodb"
 homebrew_db "memcached"
-homebrew "postgresql --without-ossp-uuid"
-homebrew_db "postgresql"
+script "installing postgresql" do
+  interpreter "bash"
+  code <<-EOS
+    source #{SMEAGOL_ROOT_DIR}/cinderella.profile
+    if [ ! -f #{SMEAGOL_ROOT_DIR}/bin/psql ]; then
+      /usr/bin/env HOMEBREW_TEMP=#{SMEAGOL_ROOT_DIR}/tmp brew install postgresql --without-ossp-uuid
+    fi
+  EOS
+end
 homebrew_db "elasticsearch"
