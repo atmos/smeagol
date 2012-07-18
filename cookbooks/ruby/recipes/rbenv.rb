@@ -9,7 +9,7 @@ require root + "/providers/homebrew"
 
 SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
 DEFAULT_RUBY_VERSION = "1.8.7-p358"
-DEFAULT_RUBY_19_VERSION = "1.9.3-p194"
+DEFAULT_RUBY_19_VERSION = "1.9.3-p125"
 
 homebrew "rbenv"
 homebrew "ruby-build"
