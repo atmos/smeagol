@@ -3,6 +3,8 @@
 # Recipe:: dbs
 #
 
+SMEAGOL_ROOT_DIR = ENV['SMEAGOL_ROOT_DIR'] || "#{ENV['HOME']}/Developer"
+
 root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 require root + '/resources/homebrew'
