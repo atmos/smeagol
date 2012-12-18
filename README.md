@@ -5,6 +5,8 @@ smeagol
 
 FWIW it was easier to just write bash for this at first.  Over time I've enjoyed maintaining this with chef more than I think I would've enjoyed straight up shell.
 
+You really shouldn't be using this anymore.
+
 What it does
 ============
 
