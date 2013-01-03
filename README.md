@@ -19,7 +19,6 @@ What it does
 * Installs a [node.js] development environment with [npm]
 * Installs a modern [python] environment with [pip]
 * Installs an [erlang] environment
-* Installs [MacVim] and sets up [janus]
 
 This is what I run on my system, [cinderella][cinderella] is a subset of that.
 
