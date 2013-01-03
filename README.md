@@ -52,7 +52,6 @@ enable/disable the services that are installed by default.
 [pip]: http://pypi.python.org/pypi/pip
 [mysql]: http://www.mysql.com/
 [redis]: http://code.google.com/p/redis/
-[janus]: http://github.com/carlhuda/janus
 [MacVim]: http://code.google.com/p/macvim/
 [erlang]: http://www.erlang.org/
 [python]: http://www.python.org
